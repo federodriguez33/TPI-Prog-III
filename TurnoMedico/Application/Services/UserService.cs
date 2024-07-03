@@ -13,7 +13,7 @@ namespace Application.Services
             return _userRepository.GetAll();
         }
 
-        public User Get(string name)
+        public User GetByName(string name)
         {
             return _userRepository.Get(name);
         }
