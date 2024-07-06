@@ -12,14 +12,17 @@ namespace Domain.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public string DNI { get; set; }
-        public string Telefono { get; set; }
-        public string Email { get; set; }
+        public int Id { get; set; } 
+        public string Nombre { get; set; } = string.Empty;
+        public string Apellido { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
+        public string DNI { get; set; } = string.Empty;
+        public string Telefono { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
 
-        [Column(TypeName = "nvarchar(100)")]
-        public string UserType { get; set; }
+        [Column(TypeName = "nvarchar(50)")]
+        public string UserType { get; set; } = string.Empty;
+        public bool Activo { get; set; }
+
     }
 }
