@@ -1,22 +1,15 @@
-﻿using Domain.Interfaces;
+﻿using Domain.Entities;
+using Domain.Interfaces;
 using Infrastructure.Context;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : BaseRepository<User>, IUserRepository
     {
-        
-        private readonly TurnoMedicoDbContext _context;
-
-        public UserRepository(TurnoMedicoDbContext context)
+        public UserRepository(TurnoMedicoDbContext context) : base(context)
         {
-            _context = context;
         }
 
+        // Aquí puedes añadir métodos específicos de User, si es necesario
     }
 }

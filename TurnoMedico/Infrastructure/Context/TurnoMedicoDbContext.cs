@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +10,6 @@ namespace Infrastructure.Context
 {
     public class TurnoMedicoDbContext : DbContext
     {
-
         public DbSet<User> Users { get; set; }
         public DbSet<Profesional> Profesionales { get; set; }
         public DbSet<Paciente> Pacientes { get; set; }
@@ -21,27 +19,21 @@ namespace Infrastructure.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configuración para la entidad User
+            // Configuración de User
             modelBuilder.Entity<User>()
                 .HasKey(u => u.Id);
 
-            // Configuración para la entidad Profesional
+            // Configuración de Profesional
             modelBuilder.Entity<Profesional>()
                 .HasKey(p => p.Id);
-
-            modelBuilder.Entity<Profesional>()
-                .HasMany(p => p.Pacientes)
-                .WithOne()
-                .HasForeignKey(p => p.ProfesionalId)
-                .OnDelete(DeleteBehavior.Restrict); // Eliminacion de Profesional NO elimina Paciente
 
             modelBuilder.Entity<Profesional>()
                 .HasMany(p => p.Turnos)
                 .WithOne()
                 .HasForeignKey(t => t.ProfesionalId)
-                .OnDelete(DeleteBehavior.Restrict); // Eliminacion de Profesional NO elimina Paciente
+                .OnDelete(DeleteBehavior.Cascade); // Eliminacion de Profesional elimina sus Turnos
 
-            // Configuración para la entidad Paciente
+            // Configuración de Paciente
             modelBuilder.Entity<Paciente>()
                 .HasKey(p => p.Id);
 
@@ -49,9 +41,9 @@ namespace Infrastructure.Context
                 .HasMany(p => p.Turnos)
                 .WithOne()
                 .HasForeignKey(t => t.PacienteId)
-                .OnDelete(DeleteBehavior.Restrict); // Relación Paciente-Turnos
+                .OnDelete(DeleteBehavior.Cascade); // Eliminacion de Paciente elimina sus Turnos
 
-            // Configuración para la entidad Turno
+            // Configuración de Turno
             modelBuilder.Entity<Turno>()
                 .HasKey(t => t.Id);
 
@@ -59,13 +51,13 @@ namespace Infrastructure.Context
                 .HasOne(t => t.Paciente)
                 .WithMany(p => p.Turnos)
                 .HasForeignKey(t => t.PacienteId)
-                .OnDelete(DeleteBehavior.Restrict); // Relación Turno-Paciente
+                .OnDelete(DeleteBehavior.Restrict); // Eliminacion de Turno NO elimina Paciente
 
             modelBuilder.Entity<Turno>()
                 .HasOne(t => t.Profesional)
                 .WithMany(p => p.Turnos)
                 .HasForeignKey(t => t.ProfesionalId)
-                .OnDelete(DeleteBehavior.Restrict); // Relación Turno-Profesional
+                .OnDelete(DeleteBehavior.Restrict); // Eliminacion de Turno NO elimina Profesional
 
             base.OnModelCreating(modelBuilder);
         }

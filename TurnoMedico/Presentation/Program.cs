@@ -19,6 +19,8 @@ builder.Services.AddDbContext<TurnoMedicoDbContext>(options => options.UseSqlite
 
 //Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IPacienteRepository, PacienteRepository>();
+builder.Services.AddScoped<IProfesionalRepository, ProfesionalRepository>();
 
 //Services
 builder.Services.AddScoped<UserService>();
