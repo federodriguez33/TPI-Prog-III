@@ -58,8 +58,7 @@
               "RelativeToolTip": "Domain\\Entities\\Turno.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-08T16:14:34.973Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-08T16:14:34.973Z"
             },
             {
               "$type": "Document",
@@ -71,8 +70,7 @@
               "RelativeToolTip": "Domain\\Entities\\Profesional.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-08T16:03:53.67Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-08T16:03:53.67Z"
             },
             {
               "$type": "Document",
@@ -84,8 +82,7 @@
               "RelativeToolTip": "Domain\\Entities\\User.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAABUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-08T15:58:50.458Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-08T15:58:50.458Z"
             },
             {
               "$type": "Document",
@@ -97,8 +94,7 @@
               "RelativeToolTip": "Domain\\Entities\\Admin.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-08T15:57:06.494Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-08T15:57:06.494Z"
             },
             {
               "$type": "Document",
@@ -110,8 +106,7 @@
               "RelativeToolTip": "Domain\\Entities\\Paciente.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-08T15:53:56.559Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-08T15:53:56.559Z"
             },
             {
               "$type": "Document",
@@ -123,8 +118,7 @@
               "RelativeToolTip": "Presentation\\appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-07-08T15:21:40.198Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-08T15:21:40.198Z"
             },
             {
               "$type": "Document",
@@ -136,8 +130,7 @@
               "RelativeToolTip": "Presentation\\Program.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAAAEAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-08T15:19:00.207Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-08T15:19:00.207Z"
             },
             {
               "$type": "Document",
@@ -162,8 +155,7 @@
               "RelativeToolTip": "Infrastructure\\Repositories\\UserRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-08T15:15:11.472Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-08T15:15:11.472Z"
             }
           ]
         }
