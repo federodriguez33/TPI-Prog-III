@@ -8,8 +8,26 @@ namespace Domain.Entities
 {
     public class Turno
     {
+        public int Id { get; set; }
         public DateTime FechaHora { get; set; }
-        public ICollection<Paciente> Pacientes { get; set; } = new List<Paciente>();
-        public ICollection<Profesional> Profesionales { get; set; } = new List<Profesional>();
+
+        // Relación con Paciente
+        public int PacienteId { get; set; }
+        public Paciente Paciente { get; set; }
+
+        // Relación con Profesional
+        public int ProfesionalId { get; set; }
+        public Profesional Profesional { get; set; }
+
+        public Turno(int pacienteId, int profesionalId, DateTime fechaHora)
+        {
+            PacienteId = pacienteId;
+            ProfesionalId = profesionalId;
+            FechaHora = fechaHora;
+
+            // Inicializando las propiedades para evitar un Null
+            Paciente = new Paciente();
+            Profesional = new Profesional();
+        }
     }
 }
