@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Application.Interfaces;
+using Domain.Entities;
+using Domain.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,37 +9,40 @@ using System.Threading.Tasks;
 
 namespace Application.Services
 {
-    public class ProfesionalService
+    public class ProfesionalService : IProfesionalService
     {
-        public Profesional? GetByName(string name)
+        private readonly IProfesionalRepository _profesionalRepository;
+
+        public ProfesionalService(IProfesionalRepository profesionalRepository)
         {
-            return _studentRepository.Get(name);
+            _profesionalRepository = profesionalRepository;
         }
 
-
-        public List<Profesional> GetAll()
+        public IEnumerable<Profesional> GetAllProfesionales()
         {
-            return _studentRepository.Get();
+            return _profesionalRepository.GetAll();
         }
 
-        public Profesional Add(Profesional profesional)
+        public Profesional GetProfesionalById(int id)
         {
-            return _studentRepository.Add(profesional);
+            return _profesionalRepository.GetById(id);
         }
 
-        public int Update(Profesional profesional)
+        public void AddProfesional(Profesional profesional)
         {
-            return _studentRepository.Update(profesional);
+            _profesionalRepository.Add(profesional);
         }
 
-        public int Delete(Profesional profesional)
+        public void UpdateProfesional(Profesional profesional)
         {
-            return _studentRepository.Delete(profesional);
+            _profesionalRepository.Update(profesional);
         }
 
-        public Profesional? GetById<Tid>(Tid id)
+        public void DeleteProfesional(int id)
         {
-            return _studentRepository.GetById(id);
+            _profesionalRepository.Delete(id);
         }
+
     }
+
 }

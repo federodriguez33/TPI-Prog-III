@@ -10,15 +10,10 @@ namespace Application.Interfaces
 {
     public interface IUserService
     {
-        ICollection<UserDto> GetAll();
-        ICollection<UserDto> GetAllPacientes();
-        ICollection<UserDto> GetAllProfesionales();
-        ICollection<UserDto> GetAllAdmins();
-        ICollection<UserDto> GetAllSuperAdmin();
-        User GetByName(string name);
-        UserDto GetById(int id);
-        UserDto Create(UserSaveRequest user);
-        UserDto UpdateUser(int id, UserSaveRequest user);
+        IEnumerable<User> GetAllUsers();
+        User GetUserById(int id);
+        void AddUser(User user);
+        void UpdateUser(User user);
         void DeleteUser(int id);
 
     }

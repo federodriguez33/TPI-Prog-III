@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Application.Interfaces;
+using Domain.Entities;
+using Domain.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,36 +9,40 @@ using System.Threading.Tasks;
 
 namespace Application.Services
 {
-    public class PacienteService
+    public class PacienteService : IPacienteService
     {
-        public Paciente? GetByName(string name)
+        private readonly IPacienteRepository _pacienteRepository;
+
+        public PacienteService(IPacienteRepository pacienteRepository)
         {
-            return _studentRepository.Get(name);
+            _pacienteRepository = pacienteRepository;
         }
 
-        public List<Paciente> GetAll()
+        public IEnumerable<Paciente> GetAllPacientes()
         {
-            return _studentRepository.Get();
+            return _pacienteRepository.GetAll();
         }
 
-        public Paciente Add(Paciente paciente)
+        public Paciente GetPacienteById(int id)
         {
-            return _studentRepository.Add(paciente);
+            return _pacienteRepository.GetById(id);
         }
 
-        public int Update(Paciente paciente)
+        public void AddPaciente(Paciente paciente)
         {
-            return _studentRepository.Update(paciente);
+            _pacienteRepository.Add(paciente);
         }
 
-        public int Delete(Paciente paciente)
+        public void UpdatePaciente(Paciente paciente)
         {
-            return _studentRepository.Delete(paciente);
+            _pacienteRepository.Update(paciente);
         }
 
-        public Paciente? GetById<Tid>(Tid id)
+        public void DeletePaciente(int id)
         {
-            return _studentRepository.GetById(id);
+            _pacienteRepository.Delete(id);
         }
+
     }
+
 }

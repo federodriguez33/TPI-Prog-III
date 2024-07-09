@@ -1,3 +1,4 @@
+using Application.Interfaces;
 using Application.Services;
 using Domain.Interfaces;
 using Infrastructure.Context;
@@ -21,9 +22,13 @@ builder.Services.AddDbContext<TurnoMedicoDbContext>(options => options.UseSqlite
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPacienteRepository, PacienteRepository>();
 builder.Services.AddScoped<IProfesionalRepository, ProfesionalRepository>();
+builder.Services.AddScoped<ITurnoRepository, TurnoRepository>();
 
 //Services
-builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IPacienteService, PacienteService>();
+builder.Services.AddScoped<IProfesionalService, ProfesionalService>();
+builder.Services.AddScoped<ITurnoService, TurnoService>();
 
 var app = builder.Build();
 

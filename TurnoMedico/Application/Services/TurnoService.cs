@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Application.Interfaces;
+using Domain.Entities;
+using Domain.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,36 +9,61 @@ using System.Threading.Tasks;
 
 namespace Application.Services
 {
-    public class TurnoService
+    public class TurnoService : ITurnoService
     {
-        public Turno? GetByFechaHora(string fechahora)
+        private readonly ITurnoRepository _turnoRepository;
+
+        public TurnoService(ITurnoRepository turnoRepository)
         {
-            return _studentRepository.Get(fechahora);
+            _turnoRepository = turnoRepository;
         }
 
-        public List<Turno> GetAll()
+        public IEnumerable<Turno> GetAllTurnos()
         {
-            return _studentRepository.Get();
+            return _turnoRepository.GetAll();
         }
 
-        public Turno Add(Turno turno)
+        public Turno GetTurnoById(int id)
         {
-            return _studentRepository.Add(turno);
+            return _turnoRepository.GetById(id);
         }
 
-        public int Update(Turno turno)
+        public void AddTurno(Turno turno)
         {
-            return _studentRepository.Update(turno);
+            if (IsTurnoAvailable(turno))
+            {
+                _turnoRepository.Add(turno);
+            }
+            else
+            {
+                throw new InvalidOperationException("El turno ya está reservado.");
+            }
         }
 
-        public int Delete(Turno turno)
+        public void UpdateTurno(Turno turno)
         {
-            return _studentRepository.Delete(turno);
+            if (IsTurnoAvailable(turno))
+            {
+                _turnoRepository.Update(turno);
+            }
+            else
+            {
+                throw new InvalidOperationException("El turno ya está reservado.");
+            }
         }
 
-        public Turno? GetById<Tid>(Tid id)
+        public void DeleteTurno(int id)
         {
-            return _studentRepository.GetById(id);
+            _turnoRepository.Delete(id);
         }
+
+        private bool IsTurnoAvailable(Turno turno)
+        {
+            // Aquí se puede implementar la lógica para verificar si el turno ya está reservado
+            var existingTurnos = _turnoRepository.Find(t => t.ProfesionalId == turno.ProfesionalId && t.FechaHora == turno.FechaHora);
+            return !existingTurnos.Any();
+        }
+
     }
+
 }
