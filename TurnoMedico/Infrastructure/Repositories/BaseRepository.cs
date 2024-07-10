@@ -26,7 +26,16 @@ namespace Infrastructure.Repositories
 
         public T GetById(int id)
         {
-            return _dbSet.Find(id);
+            var entity = _dbSet.Find(id);
+
+            if (entity == null)
+            {
+              
+                throw new InvalidOperationException($"No se encontró el Usuario con Id {id}");
+                
+            }
+
+            return entity;
         }
 
         public void Add(T entity)

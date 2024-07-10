@@ -59,7 +59,7 @@ namespace Application.Services
 
         private bool IsTurnoAvailable(Turno turno)
         {
-            // Aquí se puede implementar la lógica para verificar si el turno ya está reservado
+            // Lógica para verificar si el turno ya está reservado
             var existingTurnos = _turnoRepository.Find(t => t.ProfesionalId == turno.ProfesionalId && t.FechaHora == turno.FechaHora);
             return !existingTurnos.Any();
         }

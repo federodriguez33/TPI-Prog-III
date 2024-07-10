@@ -1,4 +1,6 @@
 ﻿using Application.Interfaces;
+using Domain.Entities;
+using Domain.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,10 +17,64 @@ namespace Presentation.Controllers
             _userService = userService;
         }
 
-        [HttpGet("{name}")]
-        public IActionResult Get([FromRoute] string name)
+        [HttpGet]
+        public ActionResult<IEnumerable<User>> GetAllUsers()
         {
-            return Ok(_userService.Get(name));
+            var users = _userService.GetAllUsers();
+            return Ok(users);
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<User> GetUserById(int id)
+        {
+            var user = _userService.GetUserById(id);
+            
+            if (user == null)
+            {
+                return NotFound();
+            }
+            return Ok(user);
+        }
+
+        [HttpPost]
+        public IActionResult AddUser([FromBody] User user)
+        {
+            _userService.AddUser(user);
+            return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, user);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateUser(int id, [FromBody] User user)
+        {
+            if (id != user.Id)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                _userService.UpdateUser(user);
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteUser(int id)
+        {
+            var user = _userService.GetUserById(id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            _userService.DeleteUser(id);
+            return NoContent();
         }
     }
 }
