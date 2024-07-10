@@ -30,7 +30,7 @@ namespace Application.Services
 
         public void AddTurno(Turno turno)
         {
-            if (IsTurnoAvailable(turno))
+            if (_turnoRepository.IsTurnoAvailable(turno))
             {
                 _turnoRepository.Add(turno);
             }
@@ -42,7 +42,7 @@ namespace Application.Services
 
         public void UpdateTurno(Turno turno)
         {
-            if (IsTurnoAvailable(turno))
+            if (_turnoRepository.IsTurnoAvailable(turno))
             {
                 _turnoRepository.Update(turno);
             }
@@ -55,13 +55,6 @@ namespace Application.Services
         public void DeleteTurno(int id)
         {
             _turnoRepository.Delete(id);
-        }
-
-        private bool IsTurnoAvailable(Turno turno)
-        {
-            // Lógica para verificar si el turno ya está reservado
-            var existingTurnos = _turnoRepository.Find(t => t.ProfesionalId == turno.ProfesionalId && t.FechaHora == turno.FechaHora);
-            return !existingTurnos.Any();
         }
 
     }

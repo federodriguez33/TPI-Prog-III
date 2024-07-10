@@ -7,9 +7,14 @@ using System.Threading.Tasks;
 
 namespace Domain.Interfaces
 {
-    public interface ITurnoRepository : IBaseRepository<Turno>
+    public interface ITurnoRepository
     {
-        // Aquí puedes añadir métodos específicos de Turno, si es necesario
+        IEnumerable<Turno> GetAll();
+        Turno GetById(int id);
+        void Add(Turno turno);
+        void Update(Turno turno);
+        void Delete(int id);
+        bool IsTurnoAvailable(Turno turno);
     }
 
 }

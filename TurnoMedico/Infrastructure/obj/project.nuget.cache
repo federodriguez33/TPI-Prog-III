@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "65eneI400ARL9RLivIUdglLSaPfI5BjQBd08S5ITKXgiHY730F2v8r55iCPEdngjioMrVeHj1ALLHAvqaBPzDQ==",
-  "success": false,
+  "dgSpecHash": "K3VLoglUUExtElxRvajN/zjJzjHUTeMtZHm8cOGGuewVX/sTI4AaFGWeTd3FZsuP/d5FfIF5kZnV7JHSP5Z2+Q==",
+  "success": true,
   "projectFilePath": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mirta\\.nuget\\packages\\entityframework\\6.5.1\\entityframework.6.5.1.nupkg.sha512",
@@ -15,9 +15,9 @@
     "C:\\Users\\mirta\\.nuget\\packages\\microsoft.codeanalysis.workspaces.common\\4.5.0\\microsoft.codeanalysis.workspaces.common.4.5.0.nupkg.sha512",
     "C:\\Users\\mirta\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\mirta\\.nuget\\packages\\microsoft.data.sqlite.core\\8.0.6\\microsoft.data.sqlite.core.8.0.6.nupkg.sha512",
-    "C:\\Users\\mirta\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.6\\microsoft.entityframeworkcore.8.0.6.nupkg.sha512",
-    "C:\\Users\\mirta\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.6\\microsoft.entityframeworkcore.abstractions.8.0.6.nupkg.sha512",
-    "C:\\Users\\mirta\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.6\\microsoft.entityframeworkcore.analyzers.8.0.6.nupkg.sha512",
+    "C:\\Users\\mirta\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.7\\microsoft.entityframeworkcore.8.0.7.nupkg.sha512",
+    "C:\\Users\\mirta\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.7\\microsoft.entityframeworkcore.abstractions.8.0.7.nupkg.sha512",
+    "C:\\Users\\mirta\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.7\\microsoft.entityframeworkcore.analyzers.8.0.7.nupkg.sha512",
     "C:\\Users\\mirta\\.nuget\\packages\\microsoft.entityframeworkcore.design\\8.0.7\\microsoft.entityframeworkcore.design.8.0.7.nupkg.sha512",
     "C:\\Users\\mirta\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\8.0.7\\microsoft.entityframeworkcore.relational.8.0.7.nupkg.sha512",
     "C:\\Users\\mirta\\.nuget\\packages\\microsoft.entityframeworkcore.sqlite\\8.0.6\\microsoft.entityframeworkcore.sqlite.8.0.6.nupkg.sha512",
@@ -77,15 +77,5 @@
     "C:\\Users\\mirta\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512",
     "C:\\Users\\mirta\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Advertencia como error: Degradación del paquete detectada: Microsoft.EntityFrameworkCore de 8.0.7 a 8.0.6. Haga referencia al paquete directamente desde el proyecto para seleccionar una versión diferente. \r\n Infrastructure -> Microsoft.EntityFrameworkCore.Design 8.0.7 -> Microsoft.EntityFrameworkCore.Relational 8.0.7 -> Microsoft.EntityFrameworkCore (>= 8.0.7) \r\n Infrastructure -> Microsoft.EntityFrameworkCore (>= 8.0.6)",
-      "libraryId": "Microsoft.EntityFrameworkCore",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  "logs": []
 }

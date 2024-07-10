@@ -10,7 +10,6 @@ namespace Infrastructure.Context
 {
     public class TurnoMedicoDbContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
         public DbSet<Profesional> Profesionales { get; set; }
         public DbSet<Paciente> Pacientes { get; set; }
         public DbSet<Turno> Turnos { get; set; }
@@ -19,9 +18,6 @@ namespace Infrastructure.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configuración de User
-            modelBuilder.Entity<User>()
-                .HasKey(u => u.Id);
 
             // Configuración de Profesional
             modelBuilder.Entity<Profesional>()

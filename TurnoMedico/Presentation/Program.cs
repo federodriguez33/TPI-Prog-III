@@ -14,9 +14,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//migration
-var connectionString = builder.Configuration.GetConnectionString("DBConnectionString");
-builder.Services.AddDbContext<TurnoMedicoDbContext>(options => options.UseSqlite(connectionString));
+//Migration
+builder.Services.AddDbContext<TurnoMedicoDbContext>(dbContextOptions => dbContextOptions.UseSqlite(
+    builder.Configuration["ConnectionStrings:DBConnectionString"]));
 
 //Repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();

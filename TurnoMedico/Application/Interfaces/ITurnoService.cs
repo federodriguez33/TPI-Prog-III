@@ -14,7 +14,6 @@ namespace Application.Interfaces
         void AddTurno(Turno turno);
         void UpdateTurno(Turno turno);
         void DeleteTurno(int id);
-
     }
 
 }
