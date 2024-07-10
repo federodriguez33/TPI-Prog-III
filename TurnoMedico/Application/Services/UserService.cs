@@ -31,11 +31,27 @@ namespace Application.Services
 
         public void AddUser(User user)
         {
+            // Verifica si el usuario ya existe por DNI y está activo
+            var existingUser = _userRepository.FindActive(u => u.DNI == user.DNI).FirstOrDefault();
+
+            if (existingUser != null)
+            {
+                throw new InvalidOperationException("El usuario ya existe.");
+            }
+
             _userRepository.Add(user);
         }
 
         public void UpdateUser(User user)
         {
+            // Verifica si otro usuario con el mismo DNI ya existe y está activo
+            var existingUser = _userRepository.FindActive(u => u.DNI == user.DNI && u.Id != user.Id).FirstOrDefault();
+
+            if (existingUser != null)
+            {
+                throw new InvalidOperationException("Ya existe otro usuario con el mismo DNI.");
+            }
+
             _userRepository.Update(user);
         }
 

@@ -15,6 +15,8 @@ namespace Domain.Interfaces
         void Update(T entity);
         void Delete(int id);
         IEnumerable<T> Find(Expression<Func<T, bool>> predicate);
+        IEnumerable<T> FindActive(Expression<Func<T, bool>> predicate);
+
     }
 
 }

@@ -33,19 +33,30 @@ namespace Presentation.Controllers
             {
                 return NotFound();
             }
+
             return Ok(user);
         }
 
         [HttpPost]
         public IActionResult AddUser([FromBody] User user)
         {
-            _userService.AddUser(user);
-            return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, user);
+
+            try
+            {
+                _userService.AddUser(user);
+                return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, user);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+
         }
 
         [HttpPut("{id}")]
         public IActionResult UpdateUser(int id, [FromBody] User user)
         {
+
             if (id != user.Id)
             {
                 return BadRequest();

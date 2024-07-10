@@ -1,4 +1,5 @@
-﻿using Domain.Interfaces;
+﻿using Domain.Entities;
+using Domain.Interfaces;
 using Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,7 +9,7 @@ using System.Linq.Expressions;
 
 namespace Infrastructure.Repositories
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T : class
+    public class BaseRepository<T> : IBaseRepository<T> where T : User
     {
         protected readonly TurnoMedicoDbContext _context;
         protected readonly DbSet<T> _dbSet;
@@ -21,18 +22,16 @@ namespace Infrastructure.Repositories
 
         public IEnumerable<T> GetAll()
         {
-            return _dbSet.ToList();
+            return _dbSet.Where(x => x.Activo).ToList(); // Solo trae los activos
         }
 
         public T GetById(int id)
         {
             var entity = _dbSet.Find(id);
 
-            if (entity == null)
+            if (entity == null || !entity.Activo)
             {
-              
                 throw new InvalidOperationException($"No se encontró el Usuario con Id {id}");
-                
             }
 
             return entity;
@@ -53,9 +52,11 @@ namespace Infrastructure.Repositories
         public void Delete(int id)
         {
             var entity = _dbSet.Find(id);
+
             if (entity != null)
             {
-                _dbSet.Remove(entity);
+                entity.Activo = false;
+                _dbSet.Update(entity);
                 _context.SaveChanges();
             }
         }
@@ -64,7 +65,14 @@ namespace Infrastructure.Repositories
         {
             return _dbSet.Where(predicate);
         }
+
+        public IEnumerable<T> FindActive(Expression<Func<T, bool>> predicate)
+        {
+            return _dbSet.Where(predicate).Where(x => x.Activo);
+        }
+
     }
+
 }
 
 
