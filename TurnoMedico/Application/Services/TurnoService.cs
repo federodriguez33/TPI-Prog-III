@@ -11,10 +11,17 @@ namespace Application.Services
     public class TurnoService : ITurnoService
     {
         private readonly ITurnoRepository _turnoRepository;
+        private readonly IPacienteRepository _pacienteRepository;
+        private readonly IProfesionalRepository _profesionalRepository;
 
-        public TurnoService(ITurnoRepository turnoRepository)
+        public TurnoService(
+            ITurnoRepository turnoRepository,
+            IPacienteRepository pacienteRepository,
+            IProfesionalRepository profesionalRepository)
         {
             _turnoRepository = turnoRepository;
+            _pacienteRepository = pacienteRepository;
+            _profesionalRepository = profesionalRepository;
         }
 
         public IEnumerable<TurnoDto> GetAllTurnos()
@@ -27,7 +34,6 @@ namespace Application.Services
                 PacienteId = t.PacienteId,
                 ProfesionalId = t.ProfesionalId,
                 FechaHora = t.FechaHora,
-                
             });
         }
 
@@ -44,36 +50,35 @@ namespace Application.Services
                 PacienteId = turno.PacienteId,
                 ProfesionalId = turno.ProfesionalId,
                 FechaHora = turno.FechaHora,
-                
             };
         }
 
         public void AddTurno(TurnoDto turnoDto)
         {
-    
-            var paciente = new Paciente
-            {
-                Id = turnoDto.Paciente.Id,
-                Nombre = turnoDto.Paciente.Nombre,
-                Apellido = turnoDto.Paciente.Apellido,
-            };
+            // Buscar el paciente por ID
+            var paciente = _pacienteRepository.GetById(turnoDto.PacienteId);
 
-            var profesional = new Profesional
+            if (paciente == null)
             {
-                Id = turnoDto.Profesional.Id,
-                Nombre = turnoDto.Profesional.Nombre,
-                Apellido = turnoDto.Profesional.Apellido,
-            };
+                throw new Exception("El paciente no existe.");
+            }
 
+            // Buscar el profesional por ID
+            var profesional = _profesionalRepository.GetById(turnoDto.ProfesionalId);
+
+            if (profesional == null)
+            {
+                throw new Exception("El profesional no existe.");
+            }
+
+            // Crear el turno y asignar el paciente y el profesional
             var turno = new Turno
             {
-                Id = turnoDto.Id,
                 PacienteId = turnoDto.PacienteId,
-                ProfesionalId = turnoDto.ProfesionalId,
-                FechaHora = turnoDto.FechaHora,
-
                 Paciente = paciente,
-                Profesional = profesional
+                ProfesionalId = turnoDto.ProfesionalId,
+                Profesional = profesional,
+                FechaHora = turnoDto.FechaHora
             };
 
             if (_turnoRepository.IsTurnoAvailable(turno))
@@ -95,10 +100,25 @@ namespace Application.Services
                 throw new InvalidOperationException("Turno no encontrado.");
             }
 
+            // Buscar el paciente por ID
+            var paciente = _pacienteRepository.GetById(turnoDto.PacienteId);
+            if (paciente == null)
+            {
+                throw new Exception("El paciente no existe.");
+            }
+
+            // Buscar el profesional por ID
+            var profesional = _profesionalRepository.GetById(turnoDto.ProfesionalId);
+            if (profesional == null)
+            {
+                throw new Exception("El profesional no existe.");
+            }
+
             turno.PacienteId = turnoDto.PacienteId;
+            turno.Paciente = paciente;
             turno.ProfesionalId = turnoDto.ProfesionalId;
+            turno.Profesional = profesional;
             turno.FechaHora = turnoDto.FechaHora;
-            
 
             if (_turnoRepository.IsTurnoAvailable(turno))
             {
@@ -116,4 +136,5 @@ namespace Application.Services
         }
     }
 }
+
 

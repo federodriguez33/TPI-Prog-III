@@ -22,7 +22,7 @@ namespace Domain.Entities
 
         [Column(TypeName = "nvarchar(50)")]
         public string UserType { get; set; } = string.Empty;
-        public bool Activo { get; set; }
+        public bool Activo { get; set; } = true;
 
     }
 }

@@ -39,17 +39,8 @@ namespace Infrastructure.Repositories
 
         public void Add(T entity)
         {
-            try
-            {
-                _dbSet.Add(entity);
-                _context.SaveChanges();
-            }
-            catch (DbUpdateException ex)
-            {
-                // Registra la excepción interna para obtener más detalles
-                Console.WriteLine(ex.InnerException?.Message);
-                throw;
-            }
+            _dbSet.Add(entity);
+            _context.SaveChanges();
         }
 
         public void Update(T entity)

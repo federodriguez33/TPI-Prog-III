@@ -17,7 +17,7 @@ namespace Domain.Entities
 
         // Relación con Paciente
         public int PacienteId { get; set; }
-        public Paciente Paciente { get; set; }
+       public Paciente Paciente { get; set; }
 
         // Relación con Profesional
         public int ProfesionalId { get; set; }
@@ -34,8 +34,8 @@ namespace Domain.Entities
             FechaHora = fechaHora;
 
             // Inicializando las propiedades para evitar un Null
-            Paciente = new Paciente();
-            Profesional = new Profesional();
+            //Paciente = new Paciente();
+            //Profesional = new Profesional();
         }
     }
 }

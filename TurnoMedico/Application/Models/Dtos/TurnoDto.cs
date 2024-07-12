@@ -12,7 +12,5 @@ namespace Application.Models.Dtos
         public int PacienteId { get; set; }
         public int ProfesionalId { get; set; }
         public DateTime FechaHora { get; set; }
-        public PacienteDto Paciente { get; set; } = new PacienteDto();
-        public ProfesionalDto Profesional { get; set; } = new ProfesionalDto();
     }
 }
