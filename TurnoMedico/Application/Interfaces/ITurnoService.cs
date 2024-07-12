@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.Models.Dtos;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace Application.Interfaces
 {
     public interface ITurnoService
     {
-        IEnumerable<Turno> GetAllTurnos();
-        Turno GetTurnoById(int id);
-        void AddTurno(Turno turno);
-        void UpdateTurno(Turno turno);
+        IEnumerable<TurnoDto> GetAllTurnos();
+        TurnoDto GetTurnoById(int id);
+        void AddTurno(TurnoDto turnoDto);
+        void UpdateTurno(TurnoDto turnoDto);
         void DeleteTurno(int id);
     }
 

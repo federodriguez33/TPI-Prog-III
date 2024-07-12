@@ -8,7 +8,7 @@ namespace Domain.Entities
 {
     public class Paciente : User
     {
-        public int Edad { get; set; }
+        public DateTime FechaNacimiento { get; set; }
         public string Diagnostico { get; set; } = string.Empty;
         public Paciente()
         {

@@ -1,7 +1,9 @@
 ﻿using Application.Interfaces;
-using Domain.Entities;
+using Application.Models.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace Presentation.Controllers
 {
@@ -17,32 +19,32 @@ namespace Presentation.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Profesional>> GetAllProfesionales()
+        public ActionResult<IEnumerable<ProfesionalDto>> GetAllProfesionales()
         {
             var profesionales = _profesionalService.GetAllProfesionales();
             return Ok(profesionales);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Profesional> GetProfesionalById(int id)
+        public ActionResult<ProfesionalDto> GetProfesionalById(int id)
         {
-            var profesional = _profesionalService.GetProfesionalById(id);
+            var profesionalDto = _profesionalService.GetProfesionalById(id);
 
-            if (profesional == null)
+            if (profesionalDto == null)
             {
                 return NotFound();
             }
 
-            return Ok(profesional);
+            return Ok(profesionalDto);
         }
 
         [HttpPost]
-        public IActionResult AddProfesional([FromBody] Profesional profesional)
+        public IActionResult AddProfesional([FromBody] ProfesionalDto profesionalDto)
         {
             try
             {
-                _profesionalService.AddProfesional(profesional);
-                return CreatedAtAction(nameof(GetProfesionalById), new { id = profesional.Id }, profesional);
+                _profesionalService.AddProfesional(profesionalDto);
+                return CreatedAtAction(nameof(GetProfesionalById), new { id = profesionalDto.Id }, profesionalDto);
             }
             catch (InvalidOperationException ex)
             {
@@ -52,17 +54,16 @@ namespace Presentation.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateProfesional(int id, [FromBody] Profesional profesional)
+        public IActionResult UpdateProfesional(int id, [FromBody] ProfesionalDto profesionalDto)
         {
-
-            if (id != profesional.Id)
+            if (id != profesionalDto.Id)
             {
                 return BadRequest();
             }
 
             try
             {
-                _profesionalService.UpdateProfesional(profesional);
+                _profesionalService.UpdateProfesional(profesionalDto);
             }
             catch (Exception)
             {
@@ -75,9 +76,9 @@ namespace Presentation.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteProfesional(int id)
         {
-            var profesional = _profesionalService.GetProfesionalById(id);
+            var profesionalDto = _profesionalService.GetProfesionalById(id);
 
-            if (profesional == null)
+            if (profesionalDto == null)
             {
                 return NotFound();
             }
@@ -85,8 +86,7 @@ namespace Presentation.Controllers
             _profesionalService.DeleteProfesional(id);
             return NoContent();
         }
-
     }
-
 }
+
 

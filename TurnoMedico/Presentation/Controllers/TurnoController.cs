@@ -1,7 +1,9 @@
 ﻿using Application.Interfaces;
-using Domain.Entities;
+using Application.Models.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace Presentation.Controllers
 {
@@ -17,47 +19,62 @@ namespace Presentation.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Turno>> GetAllTurnos()
+        public ActionResult<IEnumerable<TurnoDto>> GetAllTurnos()
         {
             var turnos = _turnoService.GetAllTurnos();
             return Ok(turnos);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Turno> GetTurnoById(int id)
+        public ActionResult<TurnoDto> GetTurnoById(int id)
         {
-            var turno = _turnoService.GetTurnoById(id);
+            var turnoDto = _turnoService.GetTurnoById(id);
 
-            if (turno == null)
+            if (turnoDto == null)
             {
                 return NotFound();
             }
 
-            return Ok(turno);
+            return Ok(turnoDto);
         }
 
         [HttpPost]
-        public IActionResult AddTurno([FromBody] Turno turno)
+        public IActionResult AddTurno([FromBody] TurnoDto turnoDto)
         {
-            _turnoService.AddTurno(turno);
-            return CreatedAtAction(nameof(GetTurnoById), new { id = turno.Id }, turno);
+            try
+            {
+                _turnoService.AddTurno(turnoDto);
+                return CreatedAtAction(nameof(GetTurnoById), new { id = turnoDto.Id }, turnoDto);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Ocurrió un error al agregar el turno.");
+            }
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateTurno(int id, [FromBody] Turno turno)
+        public IActionResult UpdateTurno(int id, [FromBody] TurnoDto turnoDto)
         {
-            if (id != turno.Id)
+            if (id != turnoDto.Id)
             {
                 return BadRequest();
             }
 
             try
             {
-                _turnoService.UpdateTurno(turno);
+                _turnoService.UpdateTurno(turnoDto);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { message = ex.Message });
             }
             catch (Exception)
             {
-                return NotFound();
+                return StatusCode(StatusCodes.Status500InternalServerError, "Ocurrió un error al actualizar el turno.");
             }
 
             return NoContent();
@@ -66,17 +83,23 @@ namespace Presentation.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteTurno(int id)
         {
-            var turno = _turnoService.GetTurnoById(id);
+            var turnoDto = _turnoService.GetTurnoById(id);
 
-            if (turno == null)
+            if (turnoDto == null)
             {
                 return NotFound();
             }
 
-            _turnoService.DeleteTurno(id);
-            return NoContent();
+            try
+            {
+                _turnoService.DeleteTurno(id);
+                return NoContent();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Ocurrió un error al eliminar el turno.");
+            }
         }
-
     }
-
 }
+

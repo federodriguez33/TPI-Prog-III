@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using Application.Models.Dtos;
+using Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace Application.Interfaces
 {
     public interface IProfesionalService
     {
-        IEnumerable<Profesional> GetAllProfesionales();
-        Profesional GetProfesionalById(int id);
-        void AddProfesional(Profesional profesional);
-        void UpdateProfesional(Profesional profesional);
+        IEnumerable<ProfesionalDto> GetAllProfesionales();
+        ProfesionalDto GetProfesionalById(int id);
+        void AddProfesional(ProfesionalDto profesionalDto);
+        void UpdateProfesional(ProfesionalDto profesionalDto);
         void DeleteProfesional(int id);
 
     }

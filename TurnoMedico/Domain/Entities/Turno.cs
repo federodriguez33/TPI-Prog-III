@@ -23,6 +23,10 @@ namespace Domain.Entities
         public int ProfesionalId { get; set; }
         public Profesional Profesional { get; set; }
 
+        public Turno()
+        {
+        }
+
         public Turno(int pacienteId, int profesionalId, DateTime fechaHora)
         {
             PacienteId = pacienteId;

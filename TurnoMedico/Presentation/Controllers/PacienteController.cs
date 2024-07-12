@@ -1,7 +1,9 @@
 ﻿using Application.Interfaces;
-using Domain.Entities;
+using Application.Models.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace Presentation.Controllers
 {
@@ -16,54 +18,51 @@ namespace Presentation.Controllers
             _pacienteService = pacienteService;
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<Paciente>> GetAllPacientes()
+        [HttpGet("GetAll")]
+        public ActionResult<IEnumerable<PacienteDto>> GetAllPacientes()
         {
             var pacientes = _pacienteService.GetAllPacientes();
             return Ok(pacientes);
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Paciente> GetPacienteById(int id)
+        public ActionResult<PacienteDto> GetPacienteById(int id)
         {
-            var paciente = _pacienteService.GetPacienteById(id);
+            var pacienteDto = _pacienteService.GetPacienteById(id);
 
-            if (paciente == null)
+            if (pacienteDto == null)
             {
                 return NotFound();
             }
 
-            return Ok(paciente);
+            return Ok(pacienteDto);
         }
 
         [HttpPost]
-        public IActionResult AddPaciente([FromBody] Paciente paciente)
+        public IActionResult AddPaciente([FromBody] PacienteDto pacienteDto)
         {
-
             try
             {
-                _pacienteService.AddPaciente(paciente);
-                return CreatedAtAction(nameof(GetPacienteById), new { id = paciente.Id }, paciente);
+                _pacienteService.AddPaciente(pacienteDto);
+                return CreatedAtAction(nameof(GetPacienteById), new { id = pacienteDto.Id }, pacienteDto);
             }
             catch (InvalidOperationException ex)
             {
                 return BadRequest(new { message = ex.Message });
             }
-
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdatePaciente(int id, [FromBody] Paciente paciente)
+        public IActionResult UpdatePaciente(int id, [FromBody] PacienteDto pacienteDto)
         {
-
-            if (id != paciente.Id)
+            if (id != pacienteDto.Id)
             {
                 return BadRequest();
             }
 
             try
             {
-                _pacienteService.UpdatePaciente(paciente);
+                _pacienteService.UpdatePaciente(pacienteDto);
             }
             catch (Exception)
             {
@@ -76,9 +75,9 @@ namespace Presentation.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeletePaciente(int id)
         {
-            var paciente = _pacienteService.GetPacienteById(id);
+            var pacienteDto = _pacienteService.GetPacienteById(id);
 
-            if (paciente == null)
+            if (pacienteDto == null)
             {
                 return NotFound();
             }
@@ -86,8 +85,7 @@ namespace Presentation.Controllers
             _pacienteService.DeletePaciente(id);
             return NoContent();
         }
-
     }
-
 }
+
 

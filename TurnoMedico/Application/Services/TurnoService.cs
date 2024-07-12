@@ -1,11 +1,10 @@
 ﻿using Application.Interfaces;
+using Application.Models.Dtos;
 using Domain.Entities;
 using Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Services
 {
@@ -18,18 +17,65 @@ namespace Application.Services
             _turnoRepository = turnoRepository;
         }
 
-        public IEnumerable<Turno> GetAllTurnos()
+        public IEnumerable<TurnoDto> GetAllTurnos()
         {
-            return _turnoRepository.GetAll();
+            var turnos = _turnoRepository.GetAll();
+
+            return turnos.Select(t => new TurnoDto
+            {
+                Id = t.Id,
+                PacienteId = t.PacienteId,
+                ProfesionalId = t.ProfesionalId,
+                FechaHora = t.FechaHora,
+                
+            });
         }
 
-        public Turno GetTurnoById(int id)
+        public TurnoDto GetTurnoById(int id)
         {
-            return _turnoRepository.GetById(id);
+            var turno = _turnoRepository.GetById(id);
+
+            if (turno == null)
+                throw new InvalidOperationException("El turno no existe.");
+
+            return new TurnoDto
+            {
+                Id = turno.Id,
+                PacienteId = turno.PacienteId,
+                ProfesionalId = turno.ProfesionalId,
+                FechaHora = turno.FechaHora,
+                
+            };
         }
 
-        public void AddTurno(Turno turno)
+        public void AddTurno(TurnoDto turnoDto)
         {
+    
+            var paciente = new Paciente
+            {
+                Id = turnoDto.Paciente.Id,
+                Nombre = turnoDto.Paciente.Nombre,
+                Apellido = turnoDto.Paciente.Apellido,
+            };
+
+            var profesional = new Profesional
+            {
+                Id = turnoDto.Profesional.Id,
+                Nombre = turnoDto.Profesional.Nombre,
+                Apellido = turnoDto.Profesional.Apellido,
+            };
+
+            var turno = new Turno
+            {
+                Id = turnoDto.Id,
+                PacienteId = turnoDto.PacienteId,
+                ProfesionalId = turnoDto.ProfesionalId,
+                FechaHora = turnoDto.FechaHora,
+
+                Paciente = paciente,
+                Profesional = profesional
+            };
+
             if (_turnoRepository.IsTurnoAvailable(turno))
             {
                 _turnoRepository.Add(turno);
@@ -40,8 +86,20 @@ namespace Application.Services
             }
         }
 
-        public void UpdateTurno(Turno turno)
+        public void UpdateTurno(TurnoDto turnoDto)
         {
+            var turno = _turnoRepository.GetById(turnoDto.Id);
+
+            if (turno == null)
+            {
+                throw new InvalidOperationException("Turno no encontrado.");
+            }
+
+            turno.PacienteId = turnoDto.PacienteId;
+            turno.ProfesionalId = turnoDto.ProfesionalId;
+            turno.FechaHora = turnoDto.FechaHora;
+            
+
             if (_turnoRepository.IsTurnoAvailable(turno))
             {
                 _turnoRepository.Update(turno);
@@ -56,7 +114,6 @@ namespace Application.Services
         {
             _turnoRepository.Delete(id);
         }
-
     }
-
 }
+
