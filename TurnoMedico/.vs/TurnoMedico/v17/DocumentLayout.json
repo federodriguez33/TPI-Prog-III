@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Infrastructure\\Migrations\\20240712015217_NuevaMigracion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Infrastructure\\Migrations\\20240712015217_NuevaMigracion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A9424233-9535-40BB-A2FB-909C258A5883}|Infrastructure\\Infrastructure.csproj|c:\\users\\mirta\\desktop\\tecnicatura universitaria en programacion\\1. materias\\programacion iii\\tp\\tpi-prog-iii\\turnomedico\\infrastructure\\repositories\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9424233-9535-40BB-A2FB-909C258A5883}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,14 +19,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "20240712015217_NuevaMigracion.cs",
-              "DocumentMoniker": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Infrastructure\\Migrations\\20240712015217_NuevaMigracion.cs",
-              "RelativeDocumentMoniker": "Infrastructure\\Migrations\\20240712015217_NuevaMigracion.cs",
-              "ToolTip": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Infrastructure\\Migrations\\20240712015217_NuevaMigracion.cs",
-              "RelativeToolTip": "Infrastructure\\Migrations\\20240712015217_NuevaMigracion.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "BaseRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Infrastructure\\Repositories\\BaseRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\BaseRepository.cs",
+              "ToolTip": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Infrastructure\\Repositories\\BaseRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\BaseRepository.cs",
+              "ViewState": "AQIAACMAAAAAAAAAAAAwwDEAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-12T01:52:18.088Z",
+              "WhenOpened": "2024-07-12T13:58:26.782Z",
               "EditorCaption": ""
             }
           ]

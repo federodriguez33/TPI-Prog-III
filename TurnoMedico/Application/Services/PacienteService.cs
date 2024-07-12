@@ -75,6 +75,7 @@ namespace Application.Services
                 DNI = pacienteDto.DNI,
                 Telefono = pacienteDto.Telefono,
                 Email = pacienteDto.Email,
+                Activo = true
             };
 
             _pacienteRepository.Add(paciente);
