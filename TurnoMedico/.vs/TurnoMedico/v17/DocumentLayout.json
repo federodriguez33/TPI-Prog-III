@@ -1,12 +1,190 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3A84F7F8-2CEE-4CD7-ABF2-B6CDC659AB17}|Application\\Application.csproj|c:\\users\\mirta\\desktop\\tecnicatura universitaria en programacion\\1. materias\\programacion iii\\tp\\tpi-prog-iii\\turnomedico\\application\\services\\turnoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A84F7F8-2CEE-4CD7-ABF2-B6CDC659AB17}|Application\\Application.csproj|solutionrelative:application\\services\\turnoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A84F7F8-2CEE-4CD7-ABF2-B6CDC659AB17}|Application\\Application.csproj|c:\\users\\mirta\\desktop\\tecnicatura universitaria en programacion\\1. materias\\programacion iii\\tp\\tpi-prog-iii\\turnomedico\\application\\interfaces\\iturnoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A84F7F8-2CEE-4CD7-ABF2-B6CDC659AB17}|Application\\Application.csproj|solutionrelative:application\\interfaces\\iturnoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6184C067-322B-475E-909B-037C4D32C57B}|Presentation\\Presentation.csproj|c:\\users\\mirta\\desktop\\tecnicatura universitaria en programacion\\1. materias\\programacion iii\\tp\\tpi-prog-iii\\turnomedico\\presentation\\controllers\\turnocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6184C067-322B-475E-909B-037C4D32C57B}|Presentation\\Presentation.csproj|solutionrelative:presentation\\controllers\\turnocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9424233-9535-40BB-A2FB-909C258A5883}|Infrastructure\\Infrastructure.csproj|c:\\users\\mirta\\desktop\\tecnicatura universitaria en programacion\\1. materias\\programacion iii\\tp\\tpi-prog-iii\\turnomedico\\infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9424233-9535-40BB-A2FB-909C258A5883}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BA07726E-90D5-46BC-B7E3-3C47C21D186E}|Domain\\Domain.csproj|c:\\users\\mirta\\desktop\\tecnicatura universitaria en programacion\\1. materias\\programacion iii\\tp\\tpi-prog-iii\\turnomedico\\domain\\entities\\turno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BA07726E-90D5-46BC-B7E3-3C47C21D186E}|Domain\\Domain.csproj|solutionrelative:domain\\entities\\turno.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6184C067-322B-475E-909B-037C4D32C57B}|Presentation\\Presentation.csproj|c:\\users\\mirta\\desktop\\tecnicatura universitaria en programacion\\1. materias\\programacion iii\\tp\\tpi-prog-iii\\turnomedico\\presentation\\controllers\\pacientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6184C067-322B-475E-909B-037C4D32C57B}|Presentation\\Presentation.csproj|solutionrelative:presentation\\controllers\\pacientecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6184C067-322B-475E-909B-037C4D32C57B}|Presentation\\Presentation.csproj|c:\\users\\mirta\\desktop\\tecnicatura universitaria en programacion\\1. materias\\programacion iii\\tp\\tpi-prog-iii\\turnomedico\\presentation\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6184C067-322B-475E-909B-037C4D32C57B}|Presentation\\Presentation.csproj|solutionrelative:presentation\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A84F7F8-2CEE-4CD7-ABF2-B6CDC659AB17}|Application\\Application.csproj|c:\\users\\mirta\\desktop\\tecnicatura universitaria en programacion\\1. materias\\programacion iii\\tp\\tpi-prog-iii\\turnomedico\\application\\services\\pacienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A84F7F8-2CEE-4CD7-ABF2-B6CDC659AB17}|Application\\Application.csproj|solutionrelative:application\\services\\pacienteservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A9424233-9535-40BB-A2FB-909C258A5883}|Infrastructure\\Infrastructure.csproj|c:\\users\\mirta\\desktop\\tecnicatura universitaria en programacion\\1. materias\\programacion iii\\tp\\tpi-prog-iii\\turnomedico\\infrastructure\\repositories\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A9424233-9535-40BB-A2FB-909C258A5883}|Infrastructure\\Infrastructure.csproj|solutionrelative:infrastructure\\repositories\\baserepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3A84F7F8-2CEE-4CD7-ABF2-B6CDC659AB17}|Application\\Application.csproj|c:\\users\\mirta\\desktop\\tecnicatura universitaria en programacion\\1. materias\\programacion iii\\tp\\tpi-prog-iii\\turnomedico\\application\\models\\dtos\\turnodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3A84F7F8-2CEE-4CD7-ABF2-B6CDC659AB17}|Application\\Application.csproj|solutionrelative:application\\models\\dtos\\turnodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Infrastructure\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\UserRepository.cs",
+              "ToolTip": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Infrastructure\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\UserRepository.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAuwBcAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-17T04:32:44.776Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PacienteController.cs",
+              "DocumentMoniker": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Presentation\\Controllers\\PacienteController.cs",
+              "RelativeDocumentMoniker": "Presentation\\Controllers\\PacienteController.cs",
+              "ToolTip": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Presentation\\Controllers\\PacienteController.cs",
+              "RelativeToolTip": "Presentation\\Controllers\\PacienteController.cs",
+              "ViewState": "AQIAADUAAAAAAAAAAAAIwD8AAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-17T04:25:56.054Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TurnoController.cs",
+              "DocumentMoniker": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Presentation\\Controllers\\TurnoController.cs",
+              "RelativeDocumentMoniker": "Presentation\\Controllers\\TurnoController.cs",
+              "ToolTip": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Presentation\\Controllers\\TurnoController.cs",
+              "RelativeToolTip": "Presentation\\Controllers\\TurnoController.cs",
+              "ViewState": "AQIAAD0AAAAAAAAAAAA0wEgAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-17T04:25:29.719Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Presentation\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "Presentation\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Presentation\\Controllers\\UserController.cs",
+              "RelativeToolTip": "Presentation\\Controllers\\UserController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-17T04:25:02.741Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ITurnoService.cs",
+              "DocumentMoniker": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Application\\Interfaces\\ITurnoService.cs",
+              "RelativeDocumentMoniker": "Application\\Interfaces\\ITurnoService.cs",
+              "ToolTip": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Application\\Interfaces\\ITurnoService.cs",
+              "RelativeToolTip": "Application\\Interfaces\\ITurnoService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-17T04:23:49.637Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TurnoService.cs",
+              "DocumentMoniker": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Application\\Services\\TurnoService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\TurnoService.cs",
+              "ToolTip": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Application\\Services\\TurnoService.cs",
+              "RelativeToolTip": "Application\\Services\\TurnoService.cs",
+              "ViewState": "AQIAAD4AAAAAAAAAAAAIwE0AAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-17T04:15:01.577Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PacienteService.cs",
+              "DocumentMoniker": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Application\\Services\\PacienteService.cs",
+              "RelativeDocumentMoniker": "Application\\Services\\PacienteService.cs",
+              "ToolTip": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Application\\Services\\PacienteService.cs",
+              "RelativeToolTip": "Application\\Services\\PacienteService.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAowAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-17T04:21:34.66Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BaseRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Infrastructure\\Repositories\\BaseRepository.cs",
+              "RelativeDocumentMoniker": "Infrastructure\\Repositories\\BaseRepository.cs",
+              "ToolTip": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Infrastructure\\Repositories\\BaseRepository.cs",
+              "RelativeToolTip": "Infrastructure\\Repositories\\BaseRepository.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-17T04:21:05.938Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "TurnoDto.cs",
+              "DocumentMoniker": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Application\\Models\\Dtos\\TurnoDto.cs",
+              "RelativeDocumentMoniker": "Application\\Models\\Dtos\\TurnoDto.cs",
+              "ToolTip": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Application\\Models\\Dtos\\TurnoDto.cs",
+              "RelativeToolTip": "Application\\Models\\Dtos\\TurnoDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-17T04:14:12.242Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Turno.cs",
+              "DocumentMoniker": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Domain\\Entities\\Turno.cs",
+              "RelativeDocumentMoniker": "Domain\\Entities\\Turno.cs",
+              "ToolTip": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Domain\\Entities\\Turno.cs",
+              "RelativeToolTip": "Domain\\Entities\\Turno.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAcwB4AAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-17T04:14:05.294Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -29,9 +29,24 @@ namespace Infrastructure.Services
         {
             if (string.IsNullOrEmpty(authenticationRequest.DNI) || string.IsNullOrEmpty(authenticationRequest.Password))
                 return null;
-            var user = _userRepository.GetByDNI(authenticationRequest.DNI);
 
-            return user;
+            // Ejemplo de validación para Paciente
+            var paciente = _userRepository.GetPacienteByDNI(authenticationRequest.DNI);
+
+            if (paciente != null && paciente.Password == authenticationRequest.Password)
+            {
+                return paciente;
+            }
+
+            // Ejemplo de validación para Profesional
+            var profesional = _userRepository.GetProfesionalByDNI(authenticationRequest.DNI);
+
+            if (profesional != null && profesional.Password == authenticationRequest.Password)
+            {
+                return profesional;
+            }
+
+            return null;
         }
 
         public string Autenticar(AuthenticationRequest authenticationRequest)
@@ -39,14 +54,21 @@ namespace Infrastructure.Services
             //Paso 1: Validamos las credenciales
             var user = ValidateUser(authenticationRequest);
 
+            if (user == null)
+            {
+                throw new UnauthorizedAccessException("Invalid credentials");
+            }
+
             //Paso 2: Crear el token
             var securityPassword = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("thisisthesecretforgeneratingakey(mustbeatleast32bitlong)")); //Traemos la SecretKey del Json. agregar antes: using Microsoft.IdentityModel.Tokens;
             var credentials = new SigningCredentials(securityPassword, SecurityAlgorithms.HmacSha256);
 
-            var claimsForToken = new List<Claim>();
-            claimsForToken.Add(new Claim("sub", user.Id.ToString()));
-            claimsForToken.Add(new Claim("given_name", user.Nombre));
-            //claimsForToken.Add(new Claim("family_name", user.Apellido));
+            var claimsForToken = new List<Claim>
+        {
+            new Claim("given_name", user.Nombre),
+            new Claim("id", user.Id.ToString()),
+            new Claim("family_name", user.Apellido)
+        };
 
             var jwtSecurityToken = new JwtSecurityToken(
                 _options.Issuer //issuer

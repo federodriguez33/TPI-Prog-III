@@ -9,6 +9,7 @@ namespace Domain.Interfaces
 {
     public interface IUserRepository : IBaseRepository<User>
     {
-        // Aquí puedes definir métodos específicos para User, si es necesario
+        Paciente GetPacienteByDNI(string DNI);
+        Profesional GetProfesionalByDNI(string DNI);
     }
 }

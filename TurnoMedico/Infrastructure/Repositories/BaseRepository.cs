@@ -37,18 +37,6 @@ namespace Infrastructure.Repositories
             return entity;
         }
 
-        public T GetByDNI(string DNI)
-        {
-            var entity = _dbSet.Find(DNI);
-
-            if (entity == null || !entity.Activo)
-            {
-                throw new InvalidOperationException($"No se encontró el Usuario con DNI {DNI}");
-            }
-
-            return entity;
-        }
-
         public void Add(T entity)
         {
             _dbSet.Add(entity);

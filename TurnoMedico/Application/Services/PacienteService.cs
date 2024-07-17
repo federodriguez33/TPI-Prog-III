@@ -28,10 +28,12 @@ namespace Application.Services
                 Id = p.Id,
                 Nombre = p.Nombre,
                 Apellido = p.Apellido,
-                Email = p.Email,
-                Telefono = p.Telefono,
                 FechaNacimiento = p.FechaNacimiento,
-                DNI = p.DNI
+                Diagnostico = p.Diagnostico,
+                DNI = p.DNI,
+                Telefono = p.Telefono,
+                Email = p.Email,
+                
             });
         }
 
@@ -83,7 +85,7 @@ namespace Application.Services
 
         public void UpdatePaciente(PacienteSaveRequest pacienteSaveRequest)
         {
-            var paciente = _pacienteRepository.GetByDNI(pacienteSaveRequest.DNI);
+            var paciente = _pacienteRepository.GetById(pacienteSaveRequest.Id);
 
             if (paciente == null)
             {

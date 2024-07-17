@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -11,7 +12,6 @@ namespace Domain.Interfaces
     {
         IEnumerable<T> GetAll();
         T GetById(int id);
-        T GetByDNI(string DNI);
         void Add(T entity);
         void Update(T entity);
         void Delete(int id);

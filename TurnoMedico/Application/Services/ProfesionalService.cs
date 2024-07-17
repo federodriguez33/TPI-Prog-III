@@ -82,7 +82,7 @@ namespace Application.Services
 
         public void UpdateProfesional(ProfesionalSaveRequest profesionalSaveRequest)
         {
-            var profesional = _profesionalRepository.GetByDNI(profesionalSaveRequest.DNI);
+            var profesional = _profesionalRepository.GetById(profesionalSaveRequest.Id);
 
             if (profesional == null)
             {

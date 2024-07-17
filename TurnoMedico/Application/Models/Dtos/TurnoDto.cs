@@ -10,7 +10,6 @@ namespace Application.Models.Dtos
 {
     public class TurnoDto
     {
-        public int Id { get; set; }
         public int PacienteId { get; set; }
         public int ProfesionalId { get; set; }
         public DateTime FechaHora { get; set; }

@@ -1,5 +1,7 @@
 ﻿using Application.Interfaces;
 using Application.Models.Dtos;
+using Application.Services;
+using Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -44,7 +46,7 @@ namespace Presentation.Controllers
             try
             {
                 _turnoService.AddTurno(turnoDto);
-                return CreatedAtAction(nameof(GetTurnoById), new { id = turnoDto.Id }, turnoDto);
+                return Ok("Turno confirmado con éxito");
             }
             catch (InvalidOperationException ex)
             {
@@ -57,16 +59,19 @@ namespace Presentation.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateTurno(int id, [FromBody] TurnoDto turnoDto)
+        public IActionResult UpdateTurno(int id, [FromBody] Turno turnoD)
         {
-            if (id != turnoDto.Id)
+
+            var updatedPaciente = _turnoService.GetTurnoById(id);
+
+            if (updatedPaciente == null)
             {
                 return BadRequest();
             }
 
             try
             {
-                _turnoService.UpdateTurno(turnoDto);
+                _turnoService.UpdateTurno(turnoD);
             }
             catch (InvalidOperationException ex)
             {

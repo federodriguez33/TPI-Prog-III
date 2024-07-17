@@ -24,11 +24,11 @@ namespace Application.Services
             _profesionalRepository = profesionalRepository;
         }
 
-        public IEnumerable<TurnoDto> GetAllTurnos()
+        public IEnumerable<Turno> GetAllTurnos()
         {
             var turnos = _turnoRepository.GetAll();
 
-            return turnos.Select(t => new TurnoDto
+            return turnos.Select(t => new Turno
             {
                 Id = t.Id,
                 PacienteId = t.PacienteId,
@@ -37,14 +37,14 @@ namespace Application.Services
             });
         }
 
-        public TurnoDto GetTurnoById(int id)
+        public Turno GetTurnoById(int id)
         {
             var turno = _turnoRepository.GetById(id);
 
             if (turno == null)
                 throw new InvalidOperationException("El turno no existe.");
 
-            return new TurnoDto
+            return new Turno
             {
                 Id = turno.Id,
                 PacienteId = turno.PacienteId,
@@ -91,9 +91,9 @@ namespace Application.Services
             }
         }
 
-        public void UpdateTurno(TurnoDto turnoDto)
+        public void UpdateTurno(Turno turnoD)
         {
-            var turno = _turnoRepository.GetById(turnoDto.Id);
+            var turno = _turnoRepository.GetById(turnoD.Id);
 
             if (turno == null)
             {
@@ -101,24 +101,24 @@ namespace Application.Services
             }
 
             // Buscar el paciente por ID
-            var paciente = _pacienteRepository.GetById(turnoDto.PacienteId);
+            var paciente = _pacienteRepository.GetById(turnoD.PacienteId);
             if (paciente == null)
             {
                 throw new Exception("El paciente no existe.");
             }
 
             // Buscar el profesional por ID
-            var profesional = _profesionalRepository.GetById(turnoDto.ProfesionalId);
+            var profesional = _profesionalRepository.GetById(turnoD.ProfesionalId);
             if (profesional == null)
             {
                 throw new Exception("El profesional no existe.");
             }
 
-            turno.PacienteId = turnoDto.PacienteId;
+            turno.PacienteId = turnoD.PacienteId;
             turno.Paciente = paciente;
-            turno.ProfesionalId = turnoDto.ProfesionalId;
+            turno.ProfesionalId = turnoD.ProfesionalId;
             turno.Profesional = profesional;
-            turno.FechaHora = turnoDto.FechaHora;
+            turno.FechaHora = turnoD.FechaHora;
 
             if (_turnoRepository.IsTurnoAvailable(turno))
             {
