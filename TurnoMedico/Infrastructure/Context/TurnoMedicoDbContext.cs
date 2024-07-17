@@ -25,7 +25,7 @@ namespace Infrastructure.Context
 
             modelBuilder.Entity<Profesional>()
                 .HasMany(p => p.Turnos)
-                .WithOne()
+                .WithOne(t => t.Profesional)
                 .HasForeignKey(t => t.ProfesionalId)
                 .OnDelete(DeleteBehavior.Cascade); // Eliminacion de Profesional elimina sus Turnos
 
@@ -35,7 +35,7 @@ namespace Infrastructure.Context
 
             modelBuilder.Entity<Paciente>()
                 .HasMany(p => p.Turnos)
-                .WithOne()
+                .WithOne(t => t.Paciente)
                 .HasForeignKey(t => t.PacienteId)
                 .OnDelete(DeleteBehavior.Cascade); // Eliminacion de Paciente elimina sus Turnos
 

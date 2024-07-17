@@ -1,5 +1,7 @@
 ﻿using Application.Interfaces;
 using Application.Models.Dtos;
+using Application.Models.Request;
+using Application.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -39,12 +41,12 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddProfesional([FromBody] ProfesionalDto profesionalDto)
+        public IActionResult AddProfesional([FromBody] ProfesionalSaveRequest profesionalSaveRequest)
         {
             try
             {
-                _profesionalService.AddProfesional(profesionalDto);
-                return CreatedAtAction(nameof(GetProfesionalById), new { id = profesionalDto.Id }, profesionalDto);
+                _profesionalService.AddProfesional(profesionalSaveRequest);
+                return Ok(profesionalSaveRequest.Nombre);
             }
             catch (InvalidOperationException ex)
             {
@@ -54,16 +56,19 @@ namespace Presentation.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateProfesional(int id, [FromBody] ProfesionalDto profesionalDto)
+        public IActionResult UpdateProfesional(int id, [FromBody] ProfesionalSaveRequest profesionalSaveRequest)
         {
-            if (id != profesionalDto.Id)
+
+            var updatedProfesional = _profesionalService.GetProfesionalById(id);
+
+            if (updatedProfesional == null)
             {
                 return BadRequest();
             }
 
             try
             {
-                _profesionalService.UpdateProfesional(profesionalDto);
+                _profesionalService.UpdateProfesional(profesionalSaveRequest);
             }
             catch (Exception)
             {

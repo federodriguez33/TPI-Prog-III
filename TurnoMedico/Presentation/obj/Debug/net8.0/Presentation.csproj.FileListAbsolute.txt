@@ -159,3 +159,9 @@ C:\Users\mirta\Desktop\Tecnicatura Universitaria en Programacion\1. Materias\Pro
 C:\Users\mirta\Desktop\Tecnicatura Universitaria en Programacion\1. Materias\Programacion III\TP\TPI-Prog-III\TurnoMedico\Presentation\obj\Debug\net8.0\Presentation.pdb
 C:\Users\mirta\Desktop\Tecnicatura Universitaria en Programacion\1. Materias\Programacion III\TP\TPI-Prog-III\TurnoMedico\Presentation\obj\Debug\net8.0\Presentation.genruntimeconfig.cache
 C:\Users\mirta\Desktop\Tecnicatura Universitaria en Programacion\1. Materias\Programacion III\TP\TPI-Prog-III\TurnoMedico\Presentation\obj\Debug\net8.0\ref\Presentation.dll
+C:\Users\mirta\Desktop\Tecnicatura Universitaria en Programacion\1. Materias\Programacion III\TP\TPI-Prog-III\TurnoMedico\Presentation\bin\Debug\net8.0\Swashbuckle.AspNetCore.Annotations.dll
+C:\Users\mirta\Desktop\Tecnicatura Universitaria en Programacion\1. Materias\Programacion III\TP\TPI-Prog-III\TurnoMedico\Presentation\bin\Debug\net8.0\System.Text.Json.dll
+C:\Users\mirta\Desktop\Tecnicatura Universitaria en Programacion\1. Materias\Programacion III\TP\TPI-Prog-III\TurnoMedico\Presentation\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\mirta\Desktop\Tecnicatura Universitaria en Programacion\1. Materias\Programacion III\TP\TPI-Prog-III\TurnoMedico\Presentation\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\mirta\Desktop\Tecnicatura Universitaria en Programacion\1. Materias\Programacion III\TP\TPI-Prog-III\TurnoMedico\Presentation\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\mirta\Desktop\Tecnicatura Universitaria en Programacion\1. Materias\Programacion III\TP\TPI-Prog-III\TurnoMedico\Presentation\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll

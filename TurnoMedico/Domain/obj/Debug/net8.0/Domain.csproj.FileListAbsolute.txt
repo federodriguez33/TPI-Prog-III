@@ -10,3 +10,4 @@ C:\Users\mirta\Desktop\Tecnicatura Universitaria en Programacion\1. Materias\Pro
 C:\Users\mirta\Desktop\Tecnicatura Universitaria en Programacion\1. Materias\Programacion III\TP\TPI-Prog-III\TurnoMedico\Domain\obj\Debug\net8.0\refint\Domain.dll
 C:\Users\mirta\Desktop\Tecnicatura Universitaria en Programacion\1. Materias\Programacion III\TP\TPI-Prog-III\TurnoMedico\Domain\obj\Debug\net8.0\Domain.pdb
 C:\Users\mirta\Desktop\Tecnicatura Universitaria en Programacion\1. Materias\Programacion III\TP\TPI-Prog-III\TurnoMedico\Domain\obj\Debug\net8.0\ref\Domain.dll
+C:\Users\mirta\Desktop\Tecnicatura Universitaria en Programacion\1. Materias\Programacion III\TP\TPI-Prog-III\TurnoMedico\Domain\obj\Debug\net8.0\Domain.csproj.AssemblyReference.cache

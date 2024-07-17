@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using Application.Models.Dtos;
+using Application.Models.Request;
 using Domain.Entities;
 using Domain.Interfaces;
 using System;
@@ -54,10 +55,10 @@ namespace Application.Services
             };
         }
 
-        public void AddProfesional(ProfesionalDto profesionalDto)
+        public void AddProfesional(ProfesionalSaveRequest profesionalSaveRequest)
         {
-            // Verifica si el profesional ya existe por DNI y está activo
-            var existingProfesional = _profesionalRepository.FindActive(p => p.DNI == profesionalDto.DNI).FirstOrDefault();
+            // Verifica si el profesional ya existe por DNI
+            var existingProfesional = _profesionalRepository.FindActive(p => p.DNI == profesionalSaveRequest.DNI).FirstOrDefault();
 
             if (existingProfesional != null)
             {
@@ -66,22 +67,22 @@ namespace Application.Services
 
             var profesional = new Profesional
             {
-                Id = profesionalDto.Id,
-                Nombre = profesionalDto.Nombre,
-                Apellido = profesionalDto.Apellido,
-                Matricula = profesionalDto.Matricula,
-                DNI = profesionalDto.DNI,
-                Telefono = profesionalDto.Telefono,
-                Email = profesionalDto.Email,
+                Nombre = profesionalSaveRequest.Nombre,
+                Apellido = profesionalSaveRequest.Apellido,
+                Password = profesionalSaveRequest.Password,
+                Matricula = profesionalSaveRequest.Matricula,
+                DNI = profesionalSaveRequest.DNI,
+                Telefono = profesionalSaveRequest.Telefono,
+                Email = profesionalSaveRequest.Email,
                   
             };
 
             _profesionalRepository.Add(profesional);
         }
 
-        public void UpdateProfesional(ProfesionalDto profesionalDto)
+        public void UpdateProfesional(ProfesionalSaveRequest profesionalSaveRequest)
         {
-            var profesional = _profesionalRepository.GetById(profesionalDto.Id);
+            var profesional = _profesionalRepository.GetByDNI(profesionalSaveRequest.DNI);
 
             if (profesional == null)
             {
@@ -89,19 +90,20 @@ namespace Application.Services
             }
 
             // Verifica si otro profesional con el mismo DNI ya existe y está activo
-            var existingProfesional = _profesionalRepository.FindActive(p => p.DNI == profesionalDto.DNI && p.Id != profesionalDto.Id).FirstOrDefault();
+            var existingProfesional = _profesionalRepository.FindActive(p => p.DNI == profesionalSaveRequest.DNI && p.Activo != profesionalSaveRequest.Activo).FirstOrDefault();
 
             if (existingProfesional != null)
             {
                 throw new InvalidOperationException("Ya existe otro profesional con el mismo DNI.");
             }
 
-            profesional.Nombre = profesionalDto.Nombre;
-            profesional.Apellido = profesionalDto.Apellido;
-            profesional.Matricula = profesionalDto.Matricula;
-            profesional.DNI = profesionalDto.DNI;
-            profesional.Telefono = profesionalDto.Telefono;
-            profesional.Email = profesionalDto.Email;
+            profesional.Nombre = profesionalSaveRequest.Nombre;
+            profesional.Apellido = profesionalSaveRequest.Apellido;
+            profesional.Password = profesionalSaveRequest.Password;
+            profesional.Matricula = profesionalSaveRequest.Matricula;
+            profesional.DNI = profesionalSaveRequest.DNI;
+            profesional.Telefono = profesionalSaveRequest.Telefono;
+            profesional.Email = profesionalSaveRequest.Email;
      
             _profesionalRepository.Update(profesional);
 

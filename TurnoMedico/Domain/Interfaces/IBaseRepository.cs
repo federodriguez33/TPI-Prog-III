@@ -11,6 +11,7 @@ namespace Domain.Interfaces
     {
         IEnumerable<T> GetAll();
         T GetById(int id);
+        T GetByDNI(string DNI);
         void Add(T entity);
         void Update(T entity);
         void Delete(int id);

@@ -1,4 +1,5 @@
 ﻿using Application.Models.Dtos;
+using Application.Models.Request;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,8 @@ namespace Application.Interfaces
     {
         IEnumerable<ProfesionalDto> GetAllProfesionales();
         ProfesionalDto GetProfesionalById(int id);
-        void AddProfesional(ProfesionalDto profesionalDto);
-        void UpdateProfesional(ProfesionalDto profesionalDto);
+        void AddProfesional(ProfesionalSaveRequest profesionalSaveRequest);
+        void UpdateProfesional(ProfesionalSaveRequest profesionalSaveRequest);
         void DeleteProfesional(int id);
 
     }

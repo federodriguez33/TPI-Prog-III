@@ -24,7 +24,7 @@ namespace Presentation.Controllers
             return Ok(users);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("Traer por {id}")]
         public ActionResult<User> GetUserById(int id)
         {
             var user = _userService.GetUserById(id);
@@ -37,42 +37,42 @@ namespace Presentation.Controllers
             return Ok(user);
         }
 
-        [HttpPost]
-        public IActionResult AddUser([FromBody] User user)
-        {
+        //[HttpPost]
+        //public IActionResult AddUser([FromBody] User user)
+        //{
 
-            try
-            {
-                _userService.AddUser(user);
-                return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, user);
-            }
-            catch (InvalidOperationException ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
+        //    try
+        //    {
+        //        _userService.AddUser(user);
+        //        return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, user);
+        //    }
+        //    catch (InvalidOperationException ex)
+        //    {
+        //        return BadRequest(new { message = ex.Message });
+        //    }
 
-        }
+        //}
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateUser(int id, [FromBody] User user)
-        {
+        //[HttpPut("{id}")]
+        //public IActionResult UpdateUser(int id, [FromBody] User user)
+        //{
 
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
+        //    if (id != user.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            try
-            {
-                _userService.UpdateUser(user);
-            }
-            catch (Exception)
-            {
-                return NotFound();
-            }
+        //    try
+        //    {
+        //        _userService.UpdateUser(user);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
         [HttpDelete("{id}")]
         public IActionResult DeleteUser(int id)

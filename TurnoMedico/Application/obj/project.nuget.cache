@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "b+wjHXR4gZ/+6wsriFj92zUrlIGG9HvDTmnUIxPGijBIgrIcc7c8h36y6A576PmFHpiqtSzIYcl+6DdzQSeZUw==",
+  "dgSpecHash": "dD9ZTXQicGwoM/kwcX8iQa3w4jV300Rz8a3i0l0dOc6KVCrcE3W0g/Wg2d6uVk8RkneTcyyKodejSKCuoijZTA==",
   "success": true,
   "projectFilePath": "C:\\Users\\mirta\\Desktop\\Tecnicatura Universitaria en Programacion\\1. Materias\\Programacion III\\TP\\TPI-Prog-III\\TurnoMedico\\Application\\Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\mirta\\.nuget\\packages\\microsoft.openapi\\1.6.14\\microsoft.openapi.1.6.14.nupkg.sha512",
+    "C:\\Users\\mirta\\.nuget\\packages\\swashbuckle.aspnetcore.annotations\\6.6.2\\swashbuckle.aspnetcore.annotations.6.6.2.nupkg.sha512",
+    "C:\\Users\\mirta\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.6.2\\swashbuckle.aspnetcore.swagger.6.6.2.nupkg.sha512",
+    "C:\\Users\\mirta\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.6.2\\swashbuckle.aspnetcore.swaggergen.6.6.2.nupkg.sha512"
+  ],
   "logs": []
 }

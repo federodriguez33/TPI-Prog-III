@@ -57,10 +57,6 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("UserType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Pacientes");
@@ -87,8 +83,9 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Matricula")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Matricula")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -101,10 +98,6 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Telefono")
                         .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<string>("UserType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -135,21 +128,6 @@ namespace Infrastructure.Migrations
                     b.ToTable("Turnos");
                 });
 
-            modelBuilder.Entity("PacienteProfesional", b =>
-                {
-                    b.Property<int>("PacientesId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("ProfesionalesId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("PacientesId", "ProfesionalesId");
-
-                    b.HasIndex("ProfesionalesId");
-
-                    b.ToTable("PacienteProfesional");
-                });
-
             modelBuilder.Entity("Domain.Entities.Turno", b =>
                 {
                     b.HasOne("Domain.Entities.Paciente", "Paciente")
@@ -167,21 +145,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("Paciente");
 
                     b.Navigation("Profesional");
-                });
-
-            modelBuilder.Entity("PacienteProfesional", b =>
-                {
-                    b.HasOne("Domain.Entities.Paciente", null)
-                        .WithMany()
-                        .HasForeignKey("PacientesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Entities.Profesional", null)
-                        .WithMany()
-                        .HasForeignKey("ProfesionalesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.Paciente", b =>

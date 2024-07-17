@@ -1,5 +1,8 @@
 ﻿using Application.Interfaces;
 using Application.Models.Dtos;
+using Application.Models.Request;
+using Application.Services;
+using Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -39,12 +42,12 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddPaciente([FromBody] PacienteDto pacienteDto)
+        public IActionResult AddPaciente([FromBody] PacienteSaveRequest pacienteSaveRequest)
         {
             try
             {
-                _pacienteService.AddPaciente(pacienteDto);
-                return CreatedAtAction(nameof(GetPacienteById), new { id = pacienteDto.Id }, pacienteDto);
+                _pacienteService.AddPaciente(pacienteSaveRequest);
+                return Ok(pacienteSaveRequest.Nombre);
             }
             catch (InvalidOperationException ex)
             {
@@ -53,16 +56,19 @@ namespace Presentation.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdatePaciente(int id, [FromBody] PacienteDto pacienteDto)
+        public IActionResult UpdatePaciente(int id, [FromBody] PacienteSaveRequest pacienteSaveRequest)
         {
-            if (id != pacienteDto.Id)
+
+            var updatedPaciente = _pacienteService.GetPacienteById(id);
+
+            if (updatedPaciente == null)
             {
                 return BadRequest();
             }
 
             try
             {
-                _pacienteService.UpdatePaciente(pacienteDto);
+                _pacienteService.UpdatePaciente(pacienteSaveRequest);
             }
             catch (Exception)
             {

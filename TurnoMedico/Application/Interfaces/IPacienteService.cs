@@ -1,4 +1,5 @@
 ﻿using Application.Models.Dtos;
+using Application.Models.Request;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,8 @@ namespace Application.Interfaces
     {
         IEnumerable<PacienteDto> GetAllPacientes();
         PacienteDto GetPacienteById(int id);
-        void AddPaciente(PacienteDto pacienteDto);
-        void UpdatePaciente(PacienteDto pacienteDto);
+        void AddPaciente(PacienteSaveRequest pacienteSaveRequest);
+        void UpdatePaciente(PacienteSaveRequest pacienteSaveRequest);
         void DeletePaciente(int id);
 
     }

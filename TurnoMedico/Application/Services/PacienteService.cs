@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using Application.Models.Dtos;
+using Application.Models.Request;
 using Domain.Entities;
 using Domain.Interfaces;
 using System;
@@ -55,10 +56,10 @@ namespace Application.Services
             };
         }
 
-        public void AddPaciente(PacienteDto pacienteDto)
+        public void AddPaciente(PacienteSaveRequest pacienteSaveRequest)
         {
-            // Verifica si el paciente ya existe por DNI y está activo
-            var existingPaciente = _pacienteRepository.FindActive(p => p.DNI == pacienteDto.DNI).FirstOrDefault();
+            // Verifica si el paciente ya existe por DNI
+            var existingPaciente = _pacienteRepository.FindActive(p => p.DNI == pacienteSaveRequest.DNI).FirstOrDefault();
 
             if (existingPaciente != null)
             {
@@ -67,22 +68,22 @@ namespace Application.Services
 
             var paciente = new Paciente
             {
-                Id = pacienteDto.Id,
-                Nombre = pacienteDto.Nombre,
-                Apellido = pacienteDto.Apellido,
-                FechaNacimiento = pacienteDto.FechaNacimiento,
-                Diagnostico = pacienteDto.Diagnostico,
-                DNI = pacienteDto.DNI,
-                Telefono = pacienteDto.Telefono,
-                Email = pacienteDto.Email,
+                Nombre = pacienteSaveRequest.Nombre,
+                Apellido = pacienteSaveRequest.Apellido,
+                Password = pacienteSaveRequest.Password,
+                FechaNacimiento = pacienteSaveRequest.FechaNacimiento,
+                Diagnostico = pacienteSaveRequest.Diagnostico,
+                DNI = pacienteSaveRequest.DNI,
+                Telefono = pacienteSaveRequest.Telefono,
+                Email = pacienteSaveRequest.Email,
             };
 
             _pacienteRepository.Add(paciente);
         }
 
-        public void UpdatePaciente(PacienteDto pacienteDto)
+        public void UpdatePaciente(PacienteSaveRequest pacienteSaveRequest)
         {
-            var paciente = _pacienteRepository.GetById(pacienteDto.Id);
+            var paciente = _pacienteRepository.GetByDNI(pacienteSaveRequest.DNI);
 
             if (paciente == null)
             {
@@ -90,21 +91,21 @@ namespace Application.Services
             }
 
             // Verifica si otro paciente con el mismo DNI ya existe y está activo
-            var existingPaciente = _pacienteRepository.FindActive(p => p.DNI == pacienteDto.DNI && p.Id != pacienteDto.Id).FirstOrDefault();
+            var existingPaciente = _pacienteRepository.FindActive(p => p.DNI == pacienteSaveRequest.DNI && p.Activo != pacienteSaveRequest.Activo).FirstOrDefault();
 
             if (existingPaciente != null)
             {
                 throw new InvalidOperationException("Ya existe otro paciente con el mismo DNI.");
             }
 
-            paciente.Nombre = pacienteDto.Nombre;
-            paciente.Apellido = pacienteDto.Apellido;
-            paciente.FechaNacimiento = pacienteDto.FechaNacimiento;
-            paciente.Diagnostico = pacienteDto.Diagnostico;
-            paciente.Email = pacienteDto.Email;
-            paciente.DNI = pacienteDto.DNI;
-            paciente.Telefono = pacienteDto.Telefono;
-            paciente.Email = pacienteDto.Email;
+            paciente.Nombre = pacienteSaveRequest.Nombre;
+            paciente.Apellido = pacienteSaveRequest.Apellido;
+            paciente.Password = pacienteSaveRequest.Password;
+            paciente.FechaNacimiento = pacienteSaveRequest.FechaNacimiento;
+            paciente.Diagnostico = pacienteSaveRequest.Diagnostico;
+            paciente.DNI = pacienteSaveRequest.DNI;
+            paciente.Telefono = pacienteSaveRequest.Telefono;
+            paciente.Email = pacienteSaveRequest.Email;
            
             _pacienteRepository.Update(paciente);
         }
