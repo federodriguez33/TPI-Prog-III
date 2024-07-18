@@ -9,6 +9,6 @@ namespace Domain.Interfaces
 {
     public interface IProfesionalRepository : IBaseRepository<Profesional>
     {
-        // Aquí puedes definir métodos específicos para Profesional, si es necesario
     }
+
 }

@@ -20,27 +20,28 @@ namespace Presentation.Controllers
             _profesionalService = profesionalService;
         }
 
-        [HttpGet]
+        [HttpGet("MostrarTodosLosProfesionales")]
         public ActionResult<IEnumerable<ProfesionalDto>> GetAllProfesionales()
         {
             var profesionales = _profesionalService.GetAllProfesionales();
             return Ok(profesionales);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("MostrarProfesionalConID{id}")]
         public ActionResult<ProfesionalDto> GetProfesionalById(int id)
         {
-            var profesionalDto = _profesionalService.GetProfesionalById(id);
-
-            if (profesionalDto == null)
+            try
             {
-                return NotFound();
+                var profesionalDto = _profesionalService.GetProfesionalById(id);
+                return Ok(profesionalDto);
             }
-
-            return Ok(profesionalDto);
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
         }
 
-        [HttpPost]
+        [HttpPost("CrearProfesional")]
         public IActionResult AddProfesional([FromBody] ProfesionalSaveRequest profesionalSaveRequest)
         {
             try
@@ -55,7 +56,7 @@ namespace Presentation.Controllers
 
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("ModificarProfesionalConID{id}")]
         public IActionResult UpdateProfesional(int id, [FromBody] ProfesionalSaveRequest profesionalSaveRequest)
         {
 
@@ -68,17 +69,21 @@ namespace Presentation.Controllers
 
             try
             {
-                _profesionalService.UpdateProfesional(profesionalSaveRequest);
+                _profesionalService.UpdateProfesional(updatedProfesional, profesionalSaveRequest);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { message = ex.Message });
             }
             catch (Exception)
             {
-                return NotFound();
+                return StatusCode(500, "Error interno al actualizar el profesional.");
             }
 
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("EliminarProfesionalConID{id}")]
         public IActionResult DeleteProfesional(int id)
         {
             var profesionalDto = _profesionalService.GetProfesionalById(id);
@@ -88,10 +93,24 @@ namespace Presentation.Controllers
                 return NotFound();
             }
 
-            _profesionalService.DeleteProfesional(id);
-            return NoContent();
+            try
+            {
+                _profesionalService.DeleteProfesional(id);
+                return NoContent();
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.Message });
+            }
+
         }
+
     }
+
 }
 
 

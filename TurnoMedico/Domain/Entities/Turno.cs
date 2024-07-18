@@ -18,10 +18,16 @@ namespace Domain.Entities
 
         // Relación con Paciente
         public int PacienteId { get; set; }
-       public Paciente Paciente { get; set; }
+        public string NombrePaciente { get; set; } = string.Empty;
+        public string ApellidoPaciente { get; set; } = string.Empty;
+        public string DNIPaciente { get; set; } = string.Empty;
+        public Paciente Paciente { get; set; }
 
         // Relación con Profesional
         public int ProfesionalId { get; set; }
+        public string NombreProfesional { get; set; } = string.Empty;
+        public string ApellidoProfesional { get; set; } = string.Empty;
+        public string MatriculaProfesional { get; set; } = string.Empty;
         public Profesional Profesional { get; set; }
 
         public Turno()
@@ -34,9 +40,8 @@ namespace Domain.Entities
             ProfesionalId = profesionalId;
             FechaHora = fechaHora;
 
-            // Inicializando las propiedades para evitar un Null
-            //Paciente = new Paciente();
-            //Profesional = new Profesional();
         }
+
     }
+
 }

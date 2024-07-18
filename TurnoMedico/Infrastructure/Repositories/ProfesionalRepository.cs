@@ -15,6 +15,6 @@ namespace Infrastructure.Repositories
         {
         }
 
-        // Aquí puedes añadir métodos específicos de Profesional, si es necesario
     }
+
 }

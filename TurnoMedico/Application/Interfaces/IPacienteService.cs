@@ -14,7 +14,7 @@ namespace Application.Interfaces
         IEnumerable<PacienteDto> GetAllPacientes();
         PacienteDto GetPacienteById(int id);
         void AddPaciente(PacienteSaveRequest pacienteSaveRequest);
-        void UpdatePaciente(PacienteSaveRequest pacienteSaveRequest);
+        void UpdatePaciente(PacienteDto pacientedto, PacienteSaveRequest pacienteSaveRequest);
         void DeletePaciente(int id);
 
     }

@@ -14,7 +14,7 @@ namespace Application.Interfaces
         IEnumerable<ProfesionalDto> GetAllProfesionales();
         ProfesionalDto GetProfesionalById(int id);
         void AddProfesional(ProfesionalSaveRequest profesionalSaveRequest);
-        void UpdateProfesional(ProfesionalSaveRequest profesionalSaveRequest);
+        void UpdateProfesional(ProfesionalDto profesionaldto, ProfesionalSaveRequest profesionalSaveRequest);
         void DeleteProfesional(int id);
 
     }

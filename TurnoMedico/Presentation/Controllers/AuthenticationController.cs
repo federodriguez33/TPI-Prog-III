@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.Controllers
 {
-    [Route("api/authentication")]
+    [Route("api/Autenticacion")]
     [ApiController]
     public class AuthenticationController : Controller
     {
@@ -18,11 +18,11 @@ namespace Presentation.Controllers
 
         }
 
-        [HttpPost("authenticate")]
+        [HttpPost]
 
-        public ActionResult<string> Autenticar(AuthenticationRequest authenticationRequest) //Enviamos como parámetro la clase que creamos arriba
+        public ActionResult<string> Autenticar(AuthenticationRequest authenticationRequest) //Enviamos como parámetro la clase que creamos
         {
-            string token = _customAuthenticationService.Autenticar(authenticationRequest); //Lo primero que hacemos es llamar a una función que valide los parámetros que enviamos.
+            string token = _customAuthenticationService.Autenticar(authenticationRequest); //Llamamos a función que valide los parámetros que enviamos y genere el token
 
             return Ok(token);
         }

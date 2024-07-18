@@ -20,27 +20,33 @@ namespace Presentation.Controllers
             _turnoService = turnoService;
         }
 
-        [HttpGet]
+        [HttpGet("MostrarTodosLosTurnos")]
         public ActionResult<IEnumerable<TurnoDto>> GetAllTurnos()
         {
             var turnos = _turnoService.GetAllTurnos();
             return Ok(turnos);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("MostrarTurnoConID{id}")]
         public ActionResult<TurnoDto> GetTurnoById(int id)
         {
-            var turnoDto = _turnoService.GetTurnoById(id);
 
-            if (turnoDto == null)
+            try
             {
-                return NotFound();
+                var turnoDto = _turnoService.GetTurnoById(id);
+                return Ok(turnoDto);
             }
-
-            return Ok(turnoDto);
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, new { message = "Ocurrió un error al obtener el turno." });
+            }
         }
 
-        [HttpPost]
+        [HttpPost("CrearTurno")]
         public IActionResult AddTurno([FromBody] TurnoDto turnoDto)
         {
             try
@@ -58,8 +64,8 @@ namespace Presentation.Controllers
             }
         }
 
-        [HttpPut("{id}")]
-        public IActionResult UpdateTurno(int id, [FromBody] Turno turnoD)
+        [HttpPut("ModificarTurnoConID{id}")]
+        public IActionResult UpdateTurno(int id, [FromBody] TurnoDto turnoDto)
         {
 
             var updatedPaciente = _turnoService.GetTurnoById(id);
@@ -71,7 +77,7 @@ namespace Presentation.Controllers
 
             try
             {
-                _turnoService.UpdateTurno(turnoD);
+                _turnoService.UpdateTurno(id, turnoDto);
             }
             catch (InvalidOperationException ex)
             {
@@ -85,7 +91,7 @@ namespace Presentation.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("EliminarTurnoConID{id}")]
         public IActionResult DeleteTurno(int id)
         {
             var turnoDto = _turnoService.GetTurnoById(id);
@@ -100,9 +106,9 @@ namespace Presentation.Controllers
                 _turnoService.DeleteTurno(id);
                 return NoContent();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Ocurrió un error al eliminar el turno.");
+                return StatusCode(500, $"Error al eliminar el turno: {ex.Message}");
             }
         }
     }

@@ -10,10 +10,10 @@ namespace Application.Interfaces
 {
     public interface ITurnoService
     {
-        IEnumerable<Turno> GetAllTurnos();
-        Turno GetTurnoById(int id);
+        IEnumerable<TurnoGetDto> GetAllTurnos();
+        TurnoGetDto GetTurnoById(int id);
         void AddTurno(TurnoDto turnoDto);
-        void UpdateTurno(Turno turnoD);
+        void UpdateTurno(int turnoId, TurnoDto turnoDto);
         void DeleteTurno(int id);
     }
 

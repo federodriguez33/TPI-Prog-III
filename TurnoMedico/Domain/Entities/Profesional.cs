@@ -8,6 +8,7 @@ namespace Domain.Entities
 {
     public class Profesional : User
     {
+        public string Especialidad { get; set; } = string.Empty;
         public string Matricula { get; set; } = string.Empty; 
 
         // Relación uno a muchos con Turno

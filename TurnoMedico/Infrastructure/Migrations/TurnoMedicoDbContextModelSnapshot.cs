@@ -83,6 +83,10 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Especialidad")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Matricula")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -110,7 +114,31 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("ApellidoPaciente")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ApellidoProfesional")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DNIPaciente")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("FechaHora")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MatriculaProfesional")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NombrePaciente")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NombreProfesional")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("PacienteId")

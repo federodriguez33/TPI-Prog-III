@@ -27,6 +27,7 @@ namespace Application.Services
                 Id = p.Id,
                 Nombre = p.Nombre,
                 Apellido = p.Apellido,
+                Especialidad = p.Especialidad,
                 Matricula = p.Matricula,
                 DNI = p.DNI,
                 Telefono = p.Telefono,
@@ -39,14 +40,12 @@ namespace Application.Services
         {
             var profesional = _profesionalRepository.GetById(id);
 
-            if (profesional == null)
-                throw new InvalidOperationException("El profesional no existe.");
-
             return new ProfesionalDto
             {
                 Id = profesional.Id,
                 Nombre = profesional.Nombre,
                 Apellido = profesional.Apellido,
+                Especialidad = profesional.Especialidad,
                 Matricula = profesional.Matricula,
                 DNI = profesional.DNI,
                 Telefono = profesional.Telefono,
@@ -57,7 +56,7 @@ namespace Application.Services
 
         public void AddProfesional(ProfesionalSaveRequest profesionalSaveRequest)
         {
-            // Verifica si el profesional ya existe por DNI
+            // Verificando si el profesional ya existe por DNI
             var existingProfesional = _profesionalRepository.FindActive(p => p.DNI == profesionalSaveRequest.DNI).FirstOrDefault();
 
             if (existingProfesional != null)
@@ -70,6 +69,7 @@ namespace Application.Services
                 Nombre = profesionalSaveRequest.Nombre,
                 Apellido = profesionalSaveRequest.Apellido,
                 Password = profesionalSaveRequest.Password,
+                Especialidad = profesionalSaveRequest.Especialidad,
                 Matricula = profesionalSaveRequest.Matricula,
                 DNI = profesionalSaveRequest.DNI,
                 Telefono = profesionalSaveRequest.Telefono,
@@ -80,17 +80,17 @@ namespace Application.Services
             _profesionalRepository.Add(profesional);
         }
 
-        public void UpdateProfesional(ProfesionalSaveRequest profesionalSaveRequest)
+        public void UpdateProfesional(ProfesionalDto profesionaldto, ProfesionalSaveRequest profesionalSaveRequest)
         {
-            var profesional = _profesionalRepository.GetById(profesionalSaveRequest.Id);
+            var profesional = _profesionalRepository.GetById(profesionaldto.Id);
 
             if (profesional == null)
             {
                 throw new InvalidOperationException("Profesional no encontrado.");
             }
 
-            // Verifica si otro profesional con el mismo DNI ya existe y está activo
-            var existingProfesional = _profesionalRepository.FindActive(p => p.DNI == profesionalSaveRequest.DNI && p.Activo != profesionalSaveRequest.Activo).FirstOrDefault();
+            // Verificando si otro profesional con el mismo DNI ya existe y está activo
+            var existingProfesional = _profesionalRepository.FindActive(p => p.DNI == profesionalSaveRequest.DNI && p.Id != profesionaldto.Id).FirstOrDefault();
 
             if (existingProfesional != null)
             {
@@ -100,6 +100,7 @@ namespace Application.Services
             profesional.Nombre = profesionalSaveRequest.Nombre;
             profesional.Apellido = profesionalSaveRequest.Apellido;
             profesional.Password = profesionalSaveRequest.Password;
+            profesional.Especialidad = profesionalSaveRequest.Especialidad;
             profesional.Matricula = profesionalSaveRequest.Matricula;
             profesional.DNI = profesionalSaveRequest.DNI;
             profesional.Telefono = profesionalSaveRequest.Telefono;
@@ -111,8 +112,18 @@ namespace Application.Services
 
         public void DeleteProfesional(int id)
         {
-            _profesionalRepository.Delete(id);
+            try
+            {
+                _profesionalRepository.Delete(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al intentar eliminar el profesional.", ex);
+            }
+
         }
+
     }
+
 }
 

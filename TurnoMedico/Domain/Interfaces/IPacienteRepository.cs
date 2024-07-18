@@ -9,6 +9,6 @@ namespace Domain.Interfaces
 {
     public interface IPacienteRepository : IBaseRepository<Paciente>
     {
-        // Aquí puedes definir métodos específicos para Paciente, si es necesario
     }
+
 }

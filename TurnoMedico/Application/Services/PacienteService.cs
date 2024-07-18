@@ -41,9 +41,6 @@ namespace Application.Services
         {
             var paciente = _pacienteRepository.GetById(id);
 
-            if (paciente == null)
-                throw new InvalidOperationException("El paciente no existe.");
-
             return new PacienteDto
             {
                 Id = paciente.Id,
@@ -60,7 +57,7 @@ namespace Application.Services
 
         public void AddPaciente(PacienteSaveRequest pacienteSaveRequest)
         {
-            // Verifica si el paciente ya existe por DNI
+            // Verificando si el paciente ya existe por DNI
             var existingPaciente = _pacienteRepository.FindActive(p => p.DNI == pacienteSaveRequest.DNI).FirstOrDefault();
 
             if (existingPaciente != null)
@@ -83,17 +80,19 @@ namespace Application.Services
             _pacienteRepository.Add(paciente);
         }
 
-        public void UpdatePaciente(PacienteSaveRequest pacienteSaveRequest)
+        public void UpdatePaciente(PacienteDto pacientedto, PacienteSaveRequest pacienteSaveRequest)
         {
-            var paciente = _pacienteRepository.GetById(pacienteSaveRequest.Id);
+            var paciente = _pacienteRepository.GetById(pacientedto.Id);
 
             if (paciente == null)
             {
                 throw new InvalidOperationException("Paciente no encontrado.");
             }
 
-            // Verifica si otro paciente con el mismo DNI ya existe y está activo
-            var existingPaciente = _pacienteRepository.FindActive(p => p.DNI == pacienteSaveRequest.DNI && p.Activo != pacienteSaveRequest.Activo).FirstOrDefault();
+            // Verificando si otro paciente con el mismo DNI ya existe y está activo
+            var existingPaciente = _pacienteRepository.FindActive(p => p.DNI == pacienteSaveRequest.DNI && p.Id != pacientedto.Id).FirstOrDefault();
+
+
 
             if (existingPaciente != null)
             {
@@ -114,8 +113,19 @@ namespace Application.Services
 
         public void DeletePaciente(int id)
         {
-            _pacienteRepository.Delete(id);
+            try
+            {
+                _pacienteRepository.Delete(id);
+            }
+            catch (Exception ex)
+            {
+                // Captura cualquier excepción y la relanza encapsulada
+                throw new Exception("Error al intentar eliminar el paciente.", ex);
+            }
+
         }
+
     }
+
 }
 

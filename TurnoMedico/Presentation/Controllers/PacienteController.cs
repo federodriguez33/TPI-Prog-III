@@ -21,27 +21,28 @@ namespace Presentation.Controllers
             _pacienteService = pacienteService;
         }
 
-        [HttpGet("GetAll")]
+        [HttpGet("MostrarTodosLosPaciente")]
         public ActionResult<IEnumerable<PacienteDto>> GetAllPacientes()
         {
             var pacientes = _pacienteService.GetAllPacientes();
             return Ok(pacientes);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("MostrarPacienteConID{id}")]
         public ActionResult<PacienteDto> GetPacienteById(int id)
         {
-            var pacienteDto = _pacienteService.GetPacienteById(id);
-
-            if (pacienteDto == null)
+            try
             {
-                return NotFound();
+                var pacienteDto = _pacienteService.GetPacienteById(id);
+                return Ok(pacienteDto);
             }
-
-            return Ok(pacienteDto);
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
         }
 
-        [HttpPost]
+        [HttpPost("CrearPaciente")]
         public IActionResult AddPaciente([FromBody] PacienteSaveRequest pacienteSaveRequest)
         {
             try
@@ -55,7 +56,7 @@ namespace Presentation.Controllers
             }
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("ModificarPacienteConID{id}")]
         public IActionResult UpdatePaciente(int id, [FromBody] PacienteSaveRequest pacienteSaveRequest)
         {
 
@@ -68,17 +69,21 @@ namespace Presentation.Controllers
 
             try
             {
-                _pacienteService.UpdatePaciente(pacienteSaveRequest);
+                _pacienteService.UpdatePaciente(updatedPaciente, pacienteSaveRequest);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { message = ex.Message });
             }
             catch (Exception)
             {
-                return NotFound();
+                return StatusCode(500, "Error interno al actualizar el paciente.");
             }
 
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("EliminarPacienteConID{id}")]
         public IActionResult DeletePaciente(int id)
         {
             var pacienteDto = _pacienteService.GetPacienteById(id);
@@ -88,8 +93,20 @@ namespace Presentation.Controllers
                 return NotFound();
             }
 
-            _pacienteService.DeletePaciente(id);
-            return NoContent();
+            try
+            {
+                _pacienteService.DeletePaciente(id);
+                return NoContent();
+            }
+            catch (InvalidOperationException ex)
+            {
+                return NotFound(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new { message = ex.Message });
+            }
+
         }
     }
 }

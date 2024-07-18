@@ -14,7 +14,7 @@ namespace Domain.Interfaces
         void Add(Turno turno);
         void Update(Turno turno);
         void Delete(int id);
-        bool IsTurnoAvailable(Turno turno);
+        bool TurnoDisponible(Turno turno);
     }
 
 }

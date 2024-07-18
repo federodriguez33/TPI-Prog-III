@@ -30,7 +30,7 @@ namespace Infrastructure.Services
             if (string.IsNullOrEmpty(authenticationRequest.DNI) || string.IsNullOrEmpty(authenticationRequest.Password))
                 return null;
 
-            // Ejemplo de validación para Paciente
+            // Validando Paciente
             var paciente = _userRepository.GetPacienteByDNI(authenticationRequest.DNI);
 
             if (paciente != null && paciente.Password == authenticationRequest.Password)
@@ -38,7 +38,7 @@ namespace Infrastructure.Services
                 return paciente;
             }
 
-            // Ejemplo de validación para Profesional
+            // Validando Profesional
             var profesional = _userRepository.GetProfesionalByDNI(authenticationRequest.DNI);
 
             if (profesional != null && profesional.Password == authenticationRequest.Password)
@@ -46,7 +46,7 @@ namespace Infrastructure.Services
                 return profesional;
             }
 
-            return null;
+            throw new UnauthorizedAccessException("Credenciales inválidas. Verifique su DNI y/o contraseña.");
         }
 
         public string Autenticar(AuthenticationRequest authenticationRequest)
@@ -65,8 +65,8 @@ namespace Infrastructure.Services
 
             var claimsForToken = new List<Claim>
         {
-            new Claim("given_name", user.Nombre),
             new Claim("id", user.Id.ToString()),
+            new Claim("given_name", user.Nombre),
             new Claim("family_name", user.Apellido)
         };
 
@@ -86,6 +86,7 @@ namespace Infrastructure.Services
 
 
         }
+
         public class AuthenticationServiceOptions
         {
             public const string AuthenticationService = "AuthenticationService";
@@ -94,5 +95,7 @@ namespace Infrastructure.Services
             public string? Audience { get; set; }
             public string? SecretForKey { get; set; }
         }
+
     }
+
 }

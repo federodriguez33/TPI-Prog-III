@@ -63,7 +63,7 @@ builder.Services.AddScoped<IProfesionalRepository, ProfesionalRepository>();
 builder.Services.AddScoped<ITurnoRepository, TurnoRepository>();
 
 //Services
-builder.Services.AddScoped<IUserService, UserService>();
+//builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPacienteService, PacienteService>();
 builder.Services.AddScoped<IProfesionalService, ProfesionalService>();
 builder.Services.AddScoped<ITurnoService, TurnoService>();
