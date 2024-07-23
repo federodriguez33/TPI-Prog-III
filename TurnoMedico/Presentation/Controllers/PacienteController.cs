@@ -3,6 +3,7 @@ using Application.Models.Dtos;
 using Application.Models.Request;
 using Application.Services;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -29,6 +30,7 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("MostrarPacienteConID{id}")]
+        [Authorize]
         public ActionResult<PacienteDto> GetPacienteById(int id)
         {
             try
@@ -64,7 +66,7 @@ namespace Presentation.Controllers
 
             if (updatedPaciente == null)
             {
-                return BadRequest();
+                return BadRequest("El paciente no existe");
             }
 
             try
@@ -80,7 +82,7 @@ namespace Presentation.Controllers
                 return StatusCode(500, "Error interno al actualizar el paciente.");
             }
 
-            return NoContent();
+            return Ok("Paciente actualizado con éxito");
         }
 
         [HttpDelete("EliminarPacienteConID{id}")]
@@ -90,7 +92,7 @@ namespace Presentation.Controllers
 
             if (pacienteDto == null)
             {
-                return NotFound();
+                return NotFound("El paciente no existe");
             }
 
             try

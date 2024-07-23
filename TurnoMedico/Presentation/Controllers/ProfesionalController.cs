@@ -2,6 +2,7 @@
 using Application.Models.Dtos;
 using Application.Models.Request;
 using Application.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -28,6 +29,7 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("MostrarProfesionalConID{id}")]
+        [Authorize]
         public ActionResult<ProfesionalDto> GetProfesionalById(int id)
         {
             try

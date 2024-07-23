@@ -2,6 +2,7 @@
 using Application.Models.Dtos;
 using Application.Services;
 using Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -28,6 +29,7 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("MostrarTurnoConID{id}")]
+        [Authorize]
         public ActionResult<TurnoDto> GetTurnoById(int id)
         {
 
@@ -88,7 +90,7 @@ namespace Presentation.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Ocurrió un error al actualizar el turno.");
             }
 
-            return NoContent();
+            return Ok("Turno modificado con éxito");
         }
 
         [HttpDelete("EliminarTurnoConID{id}")]
@@ -98,13 +100,13 @@ namespace Presentation.Controllers
 
             if (turnoDto == null)
             {
-                return NotFound();
+                return NotFound("El turno no existe");
             }
 
             try
             {
                 _turnoService.DeleteTurno(id);
-                return NoContent();
+                return Ok("Turno eliminado con éxito");
             }
             catch (Exception ex)
             {
