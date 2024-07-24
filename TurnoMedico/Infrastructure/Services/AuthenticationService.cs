@@ -25,12 +25,12 @@ namespace Infrastructure.Services
             _userRepository = userRepository;
             _options = options.Value;
         }
+
         private User? ValidateUser(AuthenticationRequest authenticationRequest)
         {
             if (string.IsNullOrEmpty(authenticationRequest.DNI) || string.IsNullOrEmpty(authenticationRequest.Password))
                 return null;
 
-            // Validando Paciente
             var paciente = _userRepository.GetPacienteByDNI(authenticationRequest.DNI);
 
             if (paciente != null && paciente.Password == authenticationRequest.Password)
@@ -38,7 +38,6 @@ namespace Infrastructure.Services
                 return paciente;
             }
 
-            // Validando Profesional
             var profesional = _userRepository.GetProfesionalByDNI(authenticationRequest.DNI);
 
             if (profesional != null && profesional.Password == authenticationRequest.Password)
@@ -46,12 +45,18 @@ namespace Infrastructure.Services
                 return profesional;
             }
 
+            var admin = _userRepository.GetAdminByDNI(authenticationRequest.DNI);
+
+            if (admin != null && admin.Password == authenticationRequest.Password)
+            {
+                return admin;
+            }
+
             throw new UnauthorizedAccessException("Credenciales inválidas. Verifique su DNI y/o contraseña.");
         }
 
         public string Autenticar(AuthenticationRequest authenticationRequest)
         {
-            //Paso 1: Validamos las credenciales
             var user = ValidateUser(authenticationRequest);
 
             if (user == null)
@@ -59,35 +64,42 @@ namespace Infrastructure.Services
                 throw new UnauthorizedAccessException("Invalid credentials");
             }
 
-            //Paso 2: Crear el token
-            var securityPassword = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("thisisthesecretforgeneratingakey(mustbeatleast32bitlong)")); //Traemos la SecretKey del Json. agregar antes: using Microsoft.IdentityModel.Tokens;
+            var securityPassword = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_options.SecretForKey));
             var credentials = new SigningCredentials(securityPassword, SecurityAlgorithms.HmacSha256);
 
+            string role = user switch
+            {
+                Paciente => "paciente",
+                Profesional => "profesional",
+                Admin => "admin",
+                _ => throw new UnauthorizedAccessException("Unknown user role")
+            };
+
             var claimsForToken = new List<Claim>
-        {
-            new Claim("id", user.Id.ToString()),
-            new Claim("given_name", user.Nombre),
-            new Claim("family_name", user.Apellido)
-        };
+    {
+        new Claim("id", user.Id.ToString()),
+        new Claim("given_name", user.Nombre),
+        new Claim("family_name", user.Apellido),
+        new Claim(ClaimTypes.Role, role)
+    };
 
             var jwtSecurityToken = new JwtSecurityToken(
-                _options.Issuer //issuer
-                , _options.Audience//Audience
-                , claimsForToken //Claims
-                , DateTime.UtcNow // Inicio
-                , DateTime.UtcNow.AddHours(1) //Fin Dura una hora
-                , credentials
-                );
+                _options.Issuer,
+                _options.Audience,
+                claimsForToken,
+                DateTime.UtcNow,
+                DateTime.UtcNow.AddHours(1),
+                credentials
+            );
 
-            //Paso 3: Return del token
             var tokenToReturn = new JwtSecurityTokenHandler().WriteToken(jwtSecurityToken);
 
-            return tokenToReturn.ToString();
-
-
+            return tokenToReturn;
         }
+    
 
-        public class AuthenticationServiceOptions
+
+    public class AuthenticationServiceOptions
         {
             public const string AuthenticationService = "AuthenticationService";
 

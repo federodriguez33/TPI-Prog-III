@@ -13,6 +13,7 @@ namespace Infrastructure.Context
         public DbSet<Profesional> Profesionales { get; set; }
         public DbSet<Paciente> Pacientes { get; set; }
         public DbSet<Turno> Turnos { get; set; }
+        public DbSet<Admin> Admins { get; set; }
 
         public TurnoMedicoDbContext(DbContextOptions<TurnoMedicoDbContext> options) : base(options) {}
 
@@ -54,6 +55,10 @@ namespace Infrastructure.Context
                 .WithMany(p => p.Turnos)
                 .HasForeignKey(t => t.ProfesionalId)
                 .OnDelete(DeleteBehavior.Restrict); // Eliminacion de Turno NO elimina Profesional
+
+            // Configuración de Admin
+            modelBuilder.Entity<Admin>()
+                .HasKey(a => a.Id);
 
             base.OnModelCreating(modelBuilder);
         }

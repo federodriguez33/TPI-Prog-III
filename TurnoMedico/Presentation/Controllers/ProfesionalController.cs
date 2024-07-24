@@ -22,6 +22,7 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("MostrarTodosLosProfesionales")]
+        [Authorize(Policy = "AdminOrProfesional")]
         public ActionResult<IEnumerable<ProfesionalDto>> GetAllProfesionales()
         {
             var profesionales = _profesionalService.GetAllProfesionales();
@@ -29,7 +30,7 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("MostrarProfesionalConID{id}")]
-        [Authorize]
+        [Authorize(Policy = "AdminOrProfesional")]
         public ActionResult<ProfesionalDto> GetProfesionalById(int id)
         {
             try
@@ -44,6 +45,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPost("CrearProfesional")]
+        [Authorize(Policy = "AdminOnly")]
         public IActionResult AddProfesional([FromBody] ProfesionalSaveRequest profesionalSaveRequest)
         {
             try
@@ -59,6 +61,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPut("ModificarProfesionalConID{id}")]
+        [Authorize(Policy = "AdminOrProfesional")]
         public IActionResult UpdateProfesional(int id, [FromBody] ProfesionalSaveRequest profesionalSaveRequest)
         {
 
@@ -86,6 +89,7 @@ namespace Presentation.Controllers
         }
 
         [HttpDelete("EliminarProfesionalConID{id}")]
+        [Authorize(Policy = "AdminOnly")]
         public IActionResult DeleteProfesional(int id)
         {
             var profesionalDto = _profesionalService.GetProfesionalById(id);

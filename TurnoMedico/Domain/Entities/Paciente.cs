@@ -12,6 +12,7 @@ namespace Domain.Entities
     {
         public DateTime FechaNacimiento { get; set; }
         public string Diagnostico { get; set; } = string.Empty;
+        public string Role { get; set; } = "paciente";
 
         // Relación uno a muchos con Turno
         public ICollection<Turno> Turnos { get; set; } = new List<Turno>();

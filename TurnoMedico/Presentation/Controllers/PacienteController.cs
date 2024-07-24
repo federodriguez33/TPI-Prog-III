@@ -23,6 +23,7 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("MostrarTodosLosPaciente")]
+        [Authorize(Policy = "AdminOrPaciente")]
         public ActionResult<IEnumerable<PacienteDto>> GetAllPacientes()
         {
             var pacientes = _pacienteService.GetAllPacientes();
@@ -30,7 +31,7 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("MostrarPacienteConID{id}")]
-        [Authorize]
+        [Authorize(Policy = "AdminOrPaciente")]
         public ActionResult<PacienteDto> GetPacienteById(int id)
         {
             try
@@ -45,6 +46,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPost("CrearPaciente")]
+        [Authorize(Policy = "AdminOnly")]
         public IActionResult AddPaciente([FromBody] PacienteSaveRequest pacienteSaveRequest)
         {
             try
@@ -59,6 +61,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPut("ModificarPacienteConID{id}")]
+        [Authorize(Policy = "AdminOrPaciente")]
         public IActionResult UpdatePaciente(int id, [FromBody] PacienteSaveRequest pacienteSaveRequest)
         {
 
@@ -86,6 +89,7 @@ namespace Presentation.Controllers
         }
 
         [HttpDelete("EliminarPacienteConID{id}")]
+        [Authorize(Policy = "AdminOnly")]
         public IActionResult DeletePaciente(int id)
         {
             var pacienteDto = _pacienteService.GetPacienteById(id);

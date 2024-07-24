@@ -11,5 +11,6 @@ namespace Domain.Interfaces
     {
         Paciente GetPacienteByDNI(string DNI);
         Profesional GetProfesionalByDNI(string DNI);
+        Admin GetAdminByDNI(string DNI);
     }
 }

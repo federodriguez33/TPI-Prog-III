@@ -23,5 +23,10 @@ namespace Infrastructure.Repositories
         {
             return _context.Profesionales.SingleOrDefault(u => u.DNI == DNI);
         }
+
+        public Admin GetAdminByDNI(string DNI)
+        {
+            return _context.Admins.SingleOrDefault(u => u.DNI == DNI);
+        }
     }
 }

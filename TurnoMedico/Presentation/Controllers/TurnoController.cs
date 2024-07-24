@@ -22,6 +22,7 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("MostrarTodosLosTurnos")]
+        [Authorize(Policy = "AllRoles")]
         public ActionResult<IEnumerable<TurnoDto>> GetAllTurnos()
         {
             var turnos = _turnoService.GetAllTurnos();
@@ -29,7 +30,7 @@ namespace Presentation.Controllers
         }
 
         [HttpGet("MostrarTurnoConID{id}")]
-        [Authorize]
+        [Authorize(Policy = "AllRoles")]
         public ActionResult<TurnoDto> GetTurnoById(int id)
         {
 
@@ -49,6 +50,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPost("CrearTurno")]
+        [Authorize(Policy = "AllRoles")]
         public IActionResult AddTurno([FromBody] TurnoDto turnoDto)
         {
             try
@@ -67,6 +69,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPut("ModificarTurnoConID{id}")]
+        [Authorize(Policy = "AllRoles")]
         public IActionResult UpdateTurno(int id, [FromBody] TurnoDto turnoDto)
         {
 
@@ -94,6 +97,7 @@ namespace Presentation.Controllers
         }
 
         [HttpDelete("EliminarTurnoConID{id}")]
+        [Authorize(Policy = "AllRoles")]
         public IActionResult DeleteTurno(int id)
         {
             var turnoDto = _turnoService.GetTurnoById(id);

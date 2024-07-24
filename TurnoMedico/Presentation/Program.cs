@@ -8,8 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using static Infrastructure.Services.AuthenticationService;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<AuthenticationServiceOptions>(
+    builder.Configuration.GetSection("AutenticacionService"));
 
 // Add services to the container.
 
@@ -52,6 +56,40 @@ builder.Services.AddAuthentication("Bearer") //"Bearer" es el tipo de auntentica
     }
 );
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireRole("admin");
+    });
+
+    options.AddPolicy("PacienteOnly", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireRole("paciente");
+    });
+
+    options.AddPolicy("AdminOrPaciente", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireRole("admin", "paciente");
+    });
+
+    options.AddPolicy("AdminOrProfesional", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireRole("admin", "profesional");
+    });
+
+    options.AddPolicy("AllRoles", policy =>
+    {
+        policy.RequireAuthenticatedUser();
+        policy.RequireRole("admin", "paciente", "profesional");
+    });
+});
+
+
 //Migration
 builder.Services.AddDbContext<TurnoMedicoDbContext>(dbContextOptions => dbContextOptions.UseSqlite(
     builder.Configuration["ConnectionStrings:DBConnectionString"]));
@@ -61,12 +99,15 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IPacienteRepository, PacienteRepository>();
 builder.Services.AddScoped<IProfesionalRepository, ProfesionalRepository>();
 builder.Services.AddScoped<ITurnoRepository, TurnoRepository>();
+builder.Services.AddScoped<IAdminRepository, AdminRepository>();
 
 //Services
 //builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IPacienteService, PacienteService>();
 builder.Services.AddScoped<IProfesionalService, ProfesionalService>();
 builder.Services.AddScoped<ITurnoService, TurnoService>();
+builder.Services.AddScoped<IAdminService, AdminService>();
+
 builder.Services.AddScoped<ICustomAuthenticationService, AuthenticationService>();
 
 var app = builder.Build();
